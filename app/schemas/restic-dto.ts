@@ -37,6 +37,7 @@ export const resticBackupOutputSchema = resticBackupRunSummarySchema.and(
 
 export const resticBackupProgressMetricsSchema = type({
 	seconds_elapsed: "number",
+	seconds_remaining: "number = 0",
 	percent_done: "number",
 	total_files: "number",
 	files_done: "number",
