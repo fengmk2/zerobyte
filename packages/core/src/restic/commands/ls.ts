@@ -60,13 +60,14 @@ export const ls = async (
 	const repoUrl = buildRepoUrl(config);
 	const env = await buildEnv(config, organizationId, deps);
 
-	const args: string[] = ["--repo", repoUrl, "ls", snapshotId, "--long"];
+	const args: string[] = ["--repo", repoUrl, "ls", "--long"];
+
+	addCommonArgs(args, env, config);
+	args.push("--", snapshotId);
 
 	if (path) {
 		args.push(path);
 	}
-
-	addCommonArgs(args, env, config);
 
 	let snapshot: LsSnapshotInfo | null = null;
 	const nodes: LsNode[] = [];
@@ -76,6 +77,8 @@ export const ls = async (
 
 	const offset = Math.max(options?.offset ?? 0, 0);
 	const limit = Math.min(Math.max(options?.limit ?? 500, 1), 500);
+
+	logger.debug(`Running restic ls with args: ${args.join(" ")}`);
 
 	const res = await safeSpawn({
 		command: "restic",

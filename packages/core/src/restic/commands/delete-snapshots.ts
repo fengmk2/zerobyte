@@ -20,8 +20,9 @@ export const deleteSnapshots = async (
 		throw new Error("No snapshot IDs provided for deletion.");
 	}
 
-	const args: string[] = ["--repo", repoUrl, "forget", ...snapshotIds, "--prune"];
+	const args: string[] = ["--repo", repoUrl, "forget", "--prune"];
 	addCommonArgs(args, env, config);
+	args.push("--", ...snapshotIds);
 
 	const res = await safeExec({ command: "restic", args, env });
 	await cleanupTemporaryKeys(env, deps);

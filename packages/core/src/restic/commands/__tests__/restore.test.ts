@@ -39,11 +39,11 @@ const setup = () => {
 	});
 
 	const getRestoreArg = () => {
-		const restoreIndex = capturedArgs.indexOf("restore");
-		if (restoreIndex < 0 || !capturedArgs[restoreIndex + 1]) {
-			throw new Error("Expected restore argument after restore command");
+		const separatorIndex = capturedArgs.indexOf("--");
+		if (separatorIndex < 0 || !capturedArgs[separatorIndex + 1]) {
+			throw new Error("Expected restore argument after separator");
 		}
-		return capturedArgs[restoreIndex + 1]!;
+		return capturedArgs[separatorIndex + 1]!;
 	};
 
 	const getOptionValues = (option: string): string[] => {
@@ -159,5 +159,32 @@ describe("restore command", () => {
 		expect(getRestoreArg()).toBe("snapshot-7202d8cc:/Users/nicolas/Developer/zerobyte/tmp/deep/test/files");
 		expect(getOptionValues("--include")).toEqual([]);
 		expect(getArgs()).not.toContain("");
+	});
+
+	test("treats flag-like snapshot IDs as positional restore args", async () => {
+		const { getArgs, getRestoreArg } = setup();
+
+		await restore(
+			config,
+			"--help",
+			"/tmp/restore-target",
+			{
+				organizationId: "org-1",
+				basePath: "/var/lib/zerobyte/volumes/vol123/_data",
+			},
+			mockDeps,
+		);
+
+		expect(getRestoreArg()).toBe("--help:/var/lib/zerobyte/volumes/vol123/_data");
+		expect(getArgs()).toEqual([
+			"--repo",
+			"/tmp/restic-repo",
+			"restore",
+			"--target",
+			"/tmp/restore-target",
+			"--json",
+			"--",
+			"--help:/var/lib/zerobyte/volumes/vol123/_data",
+		]);
 	});
 });

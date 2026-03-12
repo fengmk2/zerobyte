@@ -50,6 +50,8 @@ export const backup = async (
 	}
 
 	let includeFile: string | null = null;
+	const usesSourceArg = !options.include || options.include.length === 0;
+
 	if (options.include && options.include.length > 0) {
 		const tmp = await fs.mkdtemp(path.join(os.tmpdir(), "zerobyte-restic-include-"));
 		includeFile = path.join(tmp, "include.txt");
@@ -57,8 +59,6 @@ export const backup = async (
 		await fs.writeFile(includeFile, options.include.join("\n"), "utf-8");
 
 		args.push("--files-from", includeFile);
-	} else {
-		args.push(source);
 	}
 
 	for (const exclude of deps.defaultExcludes) {
@@ -93,6 +93,10 @@ export const backup = async (
 	}
 
 	addCommonArgs(args, env, config);
+
+	if (usesSourceArg) {
+		args.push("--", source);
+	}
 
 	const logData = throttle((data: string) => {
 		logger.info(data.trim());

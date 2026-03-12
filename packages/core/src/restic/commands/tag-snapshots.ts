@@ -21,7 +21,7 @@ export const tagSnapshots = async (
 	const repoUrl = buildRepoUrl(config);
 	const env = await buildEnv(config, organizationId, deps);
 
-	const args: string[] = ["--repo", repoUrl, "tag", ...snapshotIds];
+	const args: string[] = ["--repo", repoUrl, "tag"];
 
 	if (tags.add) {
 		for (const tag of tags.add) {
@@ -42,6 +42,7 @@ export const tagSnapshots = async (
 	}
 
 	addCommonArgs(args, env, config);
+	args.push("--", ...snapshotIds);
 
 	const res = await safeExec({ command: "restic", args, env });
 	await cleanupTemporaryKeys(env, deps);

@@ -32,12 +32,6 @@ export const copy = async (
 		args.push("--tag", options.tag);
 	}
 
-	if (options.snapshotId) {
-		args.push(options.snapshotId);
-	} else {
-		args.push("latest");
-	}
-
 	addCommonArgs(args, env, destConfig, { skipBandwidth: true });
 
 	const sourceDownloadLimit = formatBandwidthLimit(sourceConfig.downloadLimit);
@@ -50,6 +44,8 @@ export const copy = async (
 	if (destUploadLimit) {
 		args.push("--limit-upload", destUploadLimit);
 	}
+
+	args.push("--", options.snapshotId ?? "latest");
 
 	logger.info(`Copying snapshots from ${sourceRepoUrl} to ${destRepoUrl}...`);
 	logger.debug(`Executing: restic ${args.join(" ")}`);

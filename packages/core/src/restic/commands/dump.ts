@@ -32,13 +32,14 @@ export const dump = async (
 	const env = await buildEnv(config, options.organizationId, deps);
 	const pathToDump = normalizeDumpPath(options.path);
 
-	const args: string[] = ["--repo", repoUrl, "dump", snapshotRef, pathToDump];
+	const args: string[] = ["--repo", repoUrl, "dump"];
 
 	if (options.archive !== false) {
 		args.push("--archive", "tar");
 	}
 
 	addCommonArgs(args, env, config, { includeJson: false });
+	args.push("--", snapshotRef, pathToDump);
 
 	logger.debug(`Executing: restic ${args.join(" ")}`);
 

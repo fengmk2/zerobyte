@@ -98,6 +98,18 @@ describe("backup command", () => {
 			expect(hasFlag("--files-from")).toBe(false);
 		});
 
+		test("treats flag-like source paths as positional args", async () => {
+			const { getArgs } = setup();
+			const source = "--help";
+
+			await backup(config, source, { organizationId: "org-1" }, mockDeps);
+
+			const separatorIndex = getArgs().indexOf("--");
+			expect(separatorIndex).toBeGreaterThan(-1);
+			expect(getArgs()[separatorIndex + 1]).toBe(source);
+			expect(getArgs().at(-1)).toBe(source);
+		});
+
 		test("uses --files-from instead of source path when include list is provided", async () => {
 			const { hasFlag, getArgs } = setup();
 			await backup(

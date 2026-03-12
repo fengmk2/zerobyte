@@ -57,7 +57,7 @@ export const restore = async (
 		restoreArg = `${snapshotId}:${commonAncestor}`;
 	}
 
-	const args = ["--repo", repoUrl, "restore", restoreArg, "--target", target];
+	const args = ["--repo", repoUrl, "restore", "--target", target];
 
 	if (options.overwrite) {
 		args.push("--overwrite", options.overwrite);
@@ -95,6 +95,7 @@ export const restore = async (
 	}
 
 	addCommonArgs(args, env, config);
+	args.push("--", restoreArg);
 
 	const streamProgress = throttle((data: string) => {
 		if (options.onProgress) {
