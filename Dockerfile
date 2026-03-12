@@ -63,6 +63,7 @@ COPY --from=deps /deps/rclone /usr/local/bin/rclone
 COPY --from=deps /deps/shoutrrr /usr/local/bin/shoutrrr
 
 COPY ./package.json ./bun.lock ./
+COPY ./packages/core/package.json ./packages/core/package.json
 
 RUN bun install --frozen-lockfile --ignore-scripts
 
@@ -84,6 +85,7 @@ ENV PORT=4096
 WORKDIR /app
 
 COPY ./package.json ./bun.lock ./
+COPY ./packages/core/package.json ./packages/core/package.json
 RUN bun install --frozen-lockfile
 
 COPY . .

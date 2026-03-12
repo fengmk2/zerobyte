@@ -11,6 +11,7 @@
 !**/components.json
 
 !app/**
+!packages/**
 !public/**
 
 # License files and attributions
