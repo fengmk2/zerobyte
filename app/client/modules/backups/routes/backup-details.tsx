@@ -43,6 +43,7 @@ import type {
 	Snapshot,
 } from "~/client/lib/types";
 import { useNavigate } from "@tanstack/react-router";
+import type { SnapshotTimelineSortOrder } from "../components/snapshot-timeline";
 
 type Props = {
 	loaderData: {
@@ -51,14 +52,16 @@ type Props = {
 		repos: Repository[];
 		scheduleNotifs: ScheduleNotification[];
 		mirrors: ScheduleMirror[];
+		snapshotTimelineSortOrder: SnapshotTimelineSortOrder;
 		snapshots?: Snapshot[];
 	};
 	scheduleId: string;
 	initialSnapshotId?: string;
+	initialSnapshotSortOrder: SnapshotTimelineSortOrder;
 };
 
 export function ScheduleDetailsPage(props: Props) {
-	const { loaderData, scheduleId, initialSnapshotId } = props;
+	const { loaderData, scheduleId, initialSnapshotId, initialSnapshotSortOrder } = props;
 
 	const queryClient = useQueryClient();
 	const navigate = useNavigate();
@@ -287,6 +290,7 @@ export function ScheduleDetailsPage(props: Props) {
 				snapshots={snapshots ?? []}
 				snapshotId={selectedSnapshot?.short_id}
 				error={failureReason?.message}
+				initialSortOrder={initialSnapshotSortOrder}
 				onSnapshotSelect={handleSnapshotSelect}
 			/>
 			<BackupSummaryCard summary={selectedSnapshot?.summary} />
