@@ -389,7 +389,7 @@ const executeBackup = async (scheduleId: number, manual = false) => {
 	const result = await validateBackupExecution(scheduleId, manual);
 
 	if (result.type !== "success") {
-		return handleValidationResult(scheduleId, result);
+		return handleValidationResult(scheduleId, result, manual);
 	}
 
 	const { context: ctx } = result;
@@ -426,7 +426,7 @@ const executeBackup = async (scheduleId: number, manual = false) => {
 
 			switch (executionResult.status) {
 				case "unavailable":
-					return handleBackupFailure(scheduleId, ctx.organizationId, executionResult.error, ctx);
+					return handleBackupFailure(scheduleId, ctx.organizationId, executionResult.error, manual, ctx);
 				case "completed":
 					return finalizeSuccessfulBackup(
 						ctx,
@@ -435,7 +435,7 @@ const executeBackup = async (scheduleId: number, manual = false) => {
 						executionResult.warningDetails,
 					);
 				case "failed":
-					return handleBackupFailure(scheduleId, ctx.organizationId, executionResult.error, ctx);
+					return handleBackupFailure(scheduleId, ctx.organizationId, executionResult.error, manual, ctx);
 				case "cancelled":
 					return handleBackupCancellation(scheduleId, ctx.organizationId, executionResult.message);
 			}
@@ -447,7 +447,7 @@ const executeBackup = async (scheduleId: number, manual = false) => {
 			return;
 		}
 
-		return handleBackupFailure(scheduleId, ctx.organizationId, error, ctx);
+		return handleBackupFailure(scheduleId, ctx.organizationId, error, manual, ctx);
 	} finally {
 		backupExecutor.untrack(scheduleId, abortController);
 		cache.del(cacheKeys.backup.progress(scheduleId));

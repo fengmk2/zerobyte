@@ -85,7 +85,11 @@ export async function validateBackupExecution(scheduleId: number, manual = false
 	};
 }
 
-export async function handleValidationResult(scheduleId: number, result: ValidationFailure | ValidationSkipped) {
+export async function handleValidationResult(
+	scheduleId: number,
+	result: ValidationFailure | ValidationSkipped,
+	manual: boolean,
+) {
 	const organizationId = getOrganizationId();
 
 	if (result.type === "skipped") {
@@ -93,7 +97,7 @@ export async function handleValidationResult(scheduleId: number, result: Validat
 		return;
 	}
 
-	await handleBackupFailure(scheduleId, organizationId, result.error, result.partialContext);
+	await handleBackupFailure(scheduleId, organizationId, result.error, manual, result.partialContext);
 }
 
 export function emitBackupStarted(ctx: BackupContext, scheduleId: number) {
@@ -205,6 +209,7 @@ export async function handleBackupFailure(
 	scheduleId: number,
 	organizationId: string,
 	error: unknown,
+	manual: boolean,
 	partialContext?: Partial<BackupContext>,
 ) {
 	const errorMessage = toMessage(error);
@@ -228,7 +233,7 @@ export async function handleBackupFailure(
 	const nextRetryBackupAt = Date.now() + schedule.retryDelay;
 	const nextScheduledBackupAt = calculateNextRun(schedule.cronExpression);
 
-	if (shouldRetry && nextRetryBackupAt < nextScheduledBackupAt) {
+	if (!manual && shouldRetry && nextRetryBackupAt < nextScheduledBackupAt) {
 		await scheduleQueries.updateStatus(scheduleId, organizationId, {
 			lastBackupAt: Date.now(),
 			lastBackupStatus: "error",
@@ -273,9 +278,15 @@ export async function handleBackupFailure(
 
 	const { volume, repository } = partialContext;
 
-	logger.error(
-		`Backup ${schedule.name} failed after ${maxRetries} retries for volume ${volume.name} to repository ${repository.name}: ${errorMessage}`,
-	);
+	if (manual) {
+		logger.error(
+			`Manual backup ${schedule.name} failed for volume ${volume.name} to repository ${repository.name}: ${errorMessage}`,
+		);
+	} else {
+		logger.error(
+			`Backup ${schedule.name} failed after ${maxRetries} retries for volume ${volume.name} to repository ${repository.name}: ${errorMessage}`,
+		);
+	}
 
 	serverEvents.emit("backup:completed", {
 		organizationId,
@@ -285,12 +296,16 @@ export async function handleBackupFailure(
 		status: "error",
 	});
 
+	const errorNotificationMessage = manual
+		? `${errorDetails}`
+		: `${errorDetails}\n\nFailed after ${maxRetries} retry attempts.`;
+
 	notificationsService
 		.sendBackupNotification(scheduleId, "failure", {
 			volumeName: volume.name,
 			repositoryName: repository.name,
 			scheduleName: schedule.name,
-			error: `${errorDetails}\n\nFailed after ${maxRetries} retry attempts.`,
+			error: errorNotificationMessage,
 		})
 		.catch((notifyError) => {
 			logger.error(`Failed to send backup failure notification: ${toMessage(notifyError)}`);
