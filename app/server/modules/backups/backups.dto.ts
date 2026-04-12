@@ -32,7 +32,7 @@ const backupScheduleSchema = z.object({
 	oneFileSystem: z.boolean(),
 	customResticParams: z.array(z.string()).nullable(),
 	maxRetries: z.number(),
-	retryDelay: z.number(),
+	retryDelay: z.number().transform((ms) => Math.round(ms / 60000)),
 	lastBackupAt: z.number().nullable(),
 	lastBackupStatus: z.enum(["success", "error", "in_progress", "warning"]).nullable(),
 	lastBackupError: z.string().nullable(),
@@ -130,8 +130,13 @@ export const createBackupScheduleBody = z.object({
 	oneFileSystem: z.boolean().optional(),
 	tags: z.array(z.string()).optional(),
 	customResticParams: z.array(z.string()).optional(),
-	maxRetries: z.number().min(0).max(32).optional(),
-	retryDelay: z.number().min(1).max(1440).optional(),
+	maxRetries: z.number().min(0).max(32).default(2).optional(),
+	retryDelay: z
+		.number()
+		.min(1)
+		.max(1440)
+		.default(15)
+		.transform((minutes) => minutes * 60000),
 });
 
 export type CreateBackupScheduleBody = z.infer<typeof createBackupScheduleBody>;
@@ -170,7 +175,12 @@ export const updateBackupScheduleBody = z.object({
 	tags: z.array(z.string()).optional(),
 	customResticParams: z.array(z.string()).optional(),
 	maxRetries: z.number().min(0).max(32).optional(),
-	retryDelay: z.number().min(1).max(1440).optional(),
+	retryDelay: z
+		.number()
+		.min(1)
+		.max(1440)
+		.default(15)
+		.transform((minutes) => minutes * 60000),
 });
 
 export type UpdateBackupScheduleBody = z.infer<typeof updateBackupScheduleBody>;

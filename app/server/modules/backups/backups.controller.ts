@@ -33,6 +33,8 @@ import {
 	type GetMirrorCompatibilityDto,
 	type ReorderBackupSchedulesDto,
 	type GetBackupProgressDto,
+	listBackupSchedulesResponse,
+	getBackupScheduleResponse,
 } from "./backups.dto";
 import { backupsService } from "./backups.service";
 import {
@@ -54,13 +56,13 @@ export const backupScheduleController = new Hono()
 	.get("/", listBackupSchedulesDto, async (c) => {
 		const schedules = await backupsService.listSchedules();
 
-		return c.json<ListBackupSchedulesResponseDto>(schedules, 200);
+		return c.json<ListBackupSchedulesResponseDto>(listBackupSchedulesResponse.parse(schedules), 200);
 	})
 	.get("/:shortId", getBackupScheduleDto, async (c) => {
 		const shortId = asShortId(c.req.param("shortId"));
 		const schedule = await getScheduleByIdOrShortId(shortId);
 
-		return c.json<GetBackupScheduleDto>(schedule, 200);
+		return c.json<GetBackupScheduleDto>(getBackupScheduleResponse.parse(schedule), 200);
 	})
 	.get("/volume/:volumeShortId", getBackupScheduleForVolumeDto, async (c) => {
 		const volumeShortId = asShortId(c.req.param("volumeShortId"));

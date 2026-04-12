@@ -231,9 +231,9 @@ export async function handleBackupFailure(
 	const maxRetries = schedule.maxRetries;
 	const shouldRetry = currentRetryCount < maxRetries;
 	const nextRetryBackupAt = Date.now() + schedule.retryDelay;
-	const nextScheduledBackupAt = calculateNextRun(schedule.cronExpression);
+	const nextScheduledBackupAt = schedule.cronExpression ? calculateNextRun(schedule.cronExpression) : null;
 
-	if (!manual && shouldRetry && nextRetryBackupAt < nextScheduledBackupAt) {
+	if (!manual && shouldRetry && nextScheduledBackupAt && nextRetryBackupAt < nextScheduledBackupAt) {
 		await scheduleQueries.updateStatus(scheduleId, organizationId, {
 			nextBackupAt: nextRetryBackupAt,
 			failureRetryCount: currentRetryCount + 1,
@@ -293,9 +293,10 @@ export async function handleBackupFailure(
 		status: "error",
 	});
 
-	const errorNotificationMessage = manual
-		? `${errorDetails}`
-		: `${errorDetails}\n\nFailed after ${maxRetries} retry attempts.`;
+	let errorNotificationMessage = `${errorDetails}`;
+	if (!manual && currentRetryCount > 0) {
+		errorNotificationMessage = `${errorDetails}\n\nFailed after ${currentRetryCount} retry attempts.`;
+	}
 
 	notificationsService
 		.sendBackupNotification(scheduleId, "failure", {

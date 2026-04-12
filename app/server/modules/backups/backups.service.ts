@@ -112,7 +112,7 @@ const createSchedule = async (data: CreateBackupScheduleBody) => {
 			nextBackupAt: nextBackupAt,
 			shortId: generateShortId(),
 			maxRetries: data.maxRetries,
-			retryDelay: data.retryDelay ? data.retryDelay * 60 * 1000 : undefined,
+			retryDelay: data.retryDelay,
 			organizationId,
 		})
 		.returning();
@@ -165,11 +165,10 @@ const updateSchedule = async (scheduleIdOrShortId: number | string, data: Update
 	const cronExpression = data.cronExpression ?? schedule.cronExpression;
 	const nextBackupAt =
 		data.cronExpression === "" ? null : data.cronExpression ? calculateNextRun(cronExpression) : schedule.nextBackupAt;
-	const retryDelay = data.retryDelay ? data.retryDelay * 60 * 1000 : schedule.retryDelay;
 
 	const [updated] = await db
 		.update(backupSchedulesTable)
-		.set({ ...data, repositoryId: repository.id, nextBackupAt, updatedAt: Date.now(), retryDelay })
+		.set({ ...data, repositoryId: repository.id, nextBackupAt, updatedAt: Date.now() })
 		.where(and(eq(backupSchedulesTable.id, schedule.id), eq(backupSchedulesTable.organizationId, organizationId)))
 		.returning();
 

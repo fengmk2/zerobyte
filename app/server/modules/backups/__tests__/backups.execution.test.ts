@@ -11,10 +11,12 @@ import { TEST_ORG_ID } from "~/test/helpers/organization";
 import * as context from "~/server/core/request-context";
 import * as spawnModule from "@zerobyte/core/node";
 import type { SafeSpawnParams } from "@zerobyte/core/node";
+import { logger } from "@zerobyte/core/node";
 import { restic } from "~/server/core/restic";
 import { NotFoundError, BadRequestError } from "http-errors-enhanced";
 import { repositoriesService } from "~/server/modules/repositories/repositories.service";
 import { repoMutex } from "~/server/core/repository-mutex";
+import { notificationsService } from "~/server/modules/notifications/notifications.service";
 
 const setup = () => {
 	const resticBackupMock = vi.fn((_: SafeSpawnParams) =>
@@ -85,6 +87,52 @@ describe("backup execution - validation failures", () => {
 			expect(result.error).toBeInstanceOf(NotFoundError);
 			expect(result.error.message).toBe("Backup schedule not found");
 		}
+	});
+
+	test("does not claim retries when none were scheduled", async () => {
+		const { resticBackupMock } = setup();
+		const notificationSpy = vi.spyOn(notificationsService, "sendBackupNotification").mockResolvedValue();
+		const volume = await createTestVolume();
+		const repository = await createTestRepository();
+		const schedule = await createTestBackupSchedule({
+			volumeId: volume.id,
+			repositoryId: repository.id,
+			cronExpression: "* * * * *",
+			maxRetries: 2,
+			retryDelay: 15 * 60 * 1000,
+		});
+
+		resticBackupMock.mockImplementationOnce(() =>
+			Promise.resolve({ exitCode: 1, summary: generateBackupOutput(), error: "failed" }),
+		);
+
+		await backupsExecutionService.executeBackup(schedule.id);
+
+		expect(notificationSpy).toHaveBeenCalled();
+		expect(notificationSpy.mock.calls.at(-1)?.[2]?.error).toBe("failed");
+	});
+
+	test("does not log an invalid cron error for manual-only failures", async () => {
+		const { resticBackupMock } = setup();
+		const errorSpy = vi.spyOn(logger, "error").mockImplementation(() => {});
+		const volume = await createTestVolume();
+		const repository = await createTestRepository();
+		const schedule = await createTestBackupSchedule({
+			volumeId: volume.id,
+			repositoryId: repository.id,
+			enabled: false,
+			cronExpression: "",
+		});
+
+		resticBackupMock.mockImplementationOnce(() =>
+			Promise.resolve({ exitCode: 1, summary: generateBackupOutput(), error: "manual failure" }),
+		);
+
+		await backupsExecutionService.executeBackup(schedule.id, true);
+
+		expect(
+			errorSpy.mock.calls.some(([message]) => String(message).includes('Failed to parse cron expression ""')),
+		).toBe(false);
 	});
 });
 
