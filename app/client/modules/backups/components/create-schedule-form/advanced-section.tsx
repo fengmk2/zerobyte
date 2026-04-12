@@ -24,11 +24,11 @@ export const AdvancedSection = ({ form }: AdvancedSectionProps) => {
 								min={0}
 								max={32}
 								value={field.value ?? ""}
-								placeholder="e.g., 3"
+								placeholder="e.g., 2"
 								onChange={(e) => field.onChange(e.target.value ? Number(e.target.value) : undefined)}
 							/>
 						</FormControl>
-						<FormDescription>Maximum number of retry attempts if a backup fails (default: 3).</FormDescription>
+						<FormDescription>Maximum number of retry attempts if a backup fails (default: 2).</FormDescription>
 						<FormMessage />
 					</FormItem>
 				)}
@@ -46,12 +46,12 @@ export const AdvancedSection = ({ form }: AdvancedSectionProps) => {
 								min={1}
 								max={1440}
 								step={1}
-								placeholder="e.g., 60"
+								placeholder="e.g., 15"
 								value={field.value ?? ""}
 								onChange={(e) => field.onChange(e.target.value ? Number(e.target.value) : undefined)}
 							/>
 						</FormControl>
-						<FormDescription>Delay in minutes before retrying a failed backup (default: 60 minutes).</FormDescription>
+						<FormDescription>Delay in minutes before retrying a failed backup (default: 15 minutes).</FormDescription>
 						<FormMessage />
 					</FormItem>
 				)}
