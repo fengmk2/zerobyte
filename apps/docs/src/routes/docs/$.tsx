@@ -12,12 +12,30 @@ import { useFumadocsLoader } from "fumadocs-core/source/client";
 import { Suspense } from "react";
 import { Card, Cards } from "@/components/DocsCard";
 import { DocsMdxLink } from "@/components/DocsMdxLink";
+import { buildSeoHead, formatDocsTitle, siteDescription } from "@/lib/metadata";
+
+type DocsLoaderData = {
+	path: string;
+	title: string;
+	description: string;
+	url: string;
+	pageTree: Awaited<ReturnType<typeof source.serializePageTree>>;
+};
 
 export const Route = createFileRoute("/docs/$")({
+	head: ({ loaderData }) => {
+		const data = loaderData as DocsLoaderData | undefined;
+		const title = formatDocsTitle(data?.title ?? "Zerobyte Documentation");
+		const description = data?.description ?? siteDescription;
+		const path = data?.url ?? "/docs";
+
+		return buildSeoHead({ title, description, path });
+	},
 	component: Page,
 	loader: async ({ params }) => {
 		const slugs = params._splat?.split("/") ?? [];
 		const data = await serverLoader({ data: slugs });
+		if (!data) throw notFound();
 		await clientLoader.preload(data.path);
 		return data;
 	},
@@ -32,6 +50,9 @@ const serverLoader = createServerFn({
 		if (!page) throw notFound();
 		return {
 			path: page.path,
+			title: page.data.title ?? "Zerobyte Documentation",
+			description: page.data.description ?? siteDescription,
+			url: page.url,
 			pageTree: await source.serializePageTree(source.getPageTree()),
 		};
 	});
@@ -77,7 +98,8 @@ const clientLoader = browserCollections.docs.createClientLoader({
 	},
 });
 function Page() {
-	const data = useFumadocsLoader(Route.useLoaderData());
+	const data = useFumadocsLoader(Route.useLoaderData() as DocsLoaderData);
+
 	return (
 		<div data-docs-page className="relative">
 			<div aria-hidden className="landing-hero-docs-grid pointer-events-none absolute inset-0" />

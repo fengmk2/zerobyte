@@ -2,11 +2,9 @@ import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 import { RootProvider } from "fumadocs-ui/provider/tanstack";
 
 import Header from "../components/Header";
+import { ogImageUrl } from "@/lib/metadata";
 
 import appCss from "../styles.css?url";
-
-const siteUrl = "https://zerobyte.app";
-const ogImageUrl = `${siteUrl}/images/og.png`;
 
 export const Route = createRootRoute({
 	head: () => ({
@@ -19,29 +17,8 @@ export const Route = createRootRoute({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "Zerobyte | Backup automation for Restic",
-			},
-			{
-				name: "description",
-				content:
-					"Zerobyte is a web control plane for Restic backups with scheduling, encrypted repositories, monitoring, and restore workflows.",
-			},
-			{
-				property: "og:title",
-				content: "Zerobyte | Backup automation for Restic",
-			},
-			{
-				property: "og:description",
-				content:
-					"Zerobyte is a web control plane for Restic backups with scheduling, encrypted repositories, monitoring, and restore workflows.",
-			},
-			{
 				property: "og:type",
 				content: "website",
-			},
-			{
-				property: "og:url",
-				content: siteUrl,
 			},
 			{
 				property: "og:image",
@@ -62,15 +39,6 @@ export const Route = createRootRoute({
 			{
 				name: "twitter:card",
 				content: "summary_large_image",
-			},
-			{
-				name: "twitter:title",
-				content: "Zerobyte | Backup automation for Restic",
-			},
-			{
-				name: "twitter:description",
-				content:
-					"Zerobyte is a web control plane for Restic backups with scheduling, encrypted repositories, monitoring, and restore workflows.",
 			},
 			{
 				name: "twitter:image",

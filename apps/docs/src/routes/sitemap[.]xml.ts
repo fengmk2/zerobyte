@@ -1,8 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { siteUrl } from "@/lib/metadata";
 import { source } from "@/lib/source";
-
-const siteUrl = "https://zerobyte.app";
 
 function escapeXml(value: string) {
 	return value

@@ -23,6 +23,8 @@ import {
 	type LucideIcon,
 } from "lucide-react";
 import { GithubLogoIcon } from "@phosphor-icons/react";
+import screenshot1440Url from "@/assets/screenshot-1440.webp";
+import screenshot768Url from "@/assets/screenshot-768.webp";
 
 import { CornerCard } from "./CornerCard";
 import Footer from "./Footer";
@@ -208,8 +210,14 @@ function BrowserMockup() {
 			</div>
 			<div className="aspect-video bg-background/80">
 				<img
-					src="/images/screenshot.png"
+					src={screenshot1440Url}
+					srcSet={`${screenshot768Url} 768w, ${screenshot1440Url} 1440w`}
+					sizes="(min-width: 1100px) 55vw, 100vw"
 					alt="Zerobyte backups dashboard"
+					width={1440}
+					height={810}
+					fetchPriority="high"
+					decoding="async"
 					className="h-full w-full object-cover object-top"
 				/>
 			</div>
