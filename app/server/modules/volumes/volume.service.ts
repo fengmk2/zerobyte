@@ -113,6 +113,7 @@ const mountVolume = async (shortId: ShortId) => {
 	}
 
 	const backend = createVolumeBackend(volume);
+	await backend.unmount();
 	const { error, status } = await backend.mount();
 
 	await db

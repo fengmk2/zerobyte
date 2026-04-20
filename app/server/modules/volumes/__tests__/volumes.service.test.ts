@@ -131,6 +131,30 @@ describe("volumeService.listFiles security", () => {
 	});
 });
 
+describe("volumeService.mountVolume", () => {
+	test("unmounts any existing mount before mounting", async () => {
+		const { organizationId, user } = await createTestSession();
+		const volume = await createTestVolume({ organizationId, status: "mounted" });
+		const unmount = vi.fn().mockResolvedValue({ status: "unmounted" });
+		const mount = vi.fn().mockResolvedValue({ status: "mounted" });
+
+		vi.spyOn(backendModule, "createVolumeBackend").mockImplementation(() => ({
+			mount,
+			unmount,
+			checkHealth: vi.fn().mockResolvedValue({ status: "mounted" }),
+		}));
+
+		await withContext({ organizationId, userId: user.id }, async () => {
+			const result = await volumeService.mountVolume(volume.shortId);
+
+			expect(result.status).toBe("mounted");
+			expect(unmount).toHaveBeenCalledOnce();
+			expect(mount).toHaveBeenCalledOnce();
+			expect(unmount.mock.invocationCallOrder[0]).toBeLessThan(mount.mock.invocationCallOrder[0]);
+		});
+	});
+});
+
 describe("volumeService.ensureHealthyVolume", () => {
 	test("returns ready when the mounted volume passes its health check", async () => {
 		const { organizationId, user } = await createTestSession();
