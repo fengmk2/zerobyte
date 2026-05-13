@@ -1,2 +1,3 @@
 [install]
 minimumReleaseAge = 86400
+minimumReleaseAgeExcludes = ["vite-plus", "@voidzero-dev/vite-plus-core", "@voidzero-dev/vite-plus-test", "@voidzero-dev/vite-plus-darwin-arm64", "@voidzero-dev/vite-plus-darwin-x64", "@voidzero-dev/vite-plus-linux-arm64-gnu", "@voidzero-dev/vite-plus-linux-arm64-musl", "@voidzero-dev/vite-plus-linux-x64-gnu", "@voidzero-dev/vite-plus-linux-x64-musl", "@voidzero-dev/vite-plus-win32-arm64-msvc", "@voidzero-dev/vite-plus-win32-x64-msvc"]
