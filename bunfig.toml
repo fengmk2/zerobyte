@@ -1,3 +1,33 @@
 [install]
-minimumReleaseAge = 259200
-minimumReleaseAgeExcludes = ["@zerobyte/*"]
+minimumReleaseAge = 3600
+minimumReleaseAgeExcludes = [
+	"@zerobyte/*",
+	"vite-plus",
+	"@voidzero-dev/vite-plus-core",
+	"@voidzero-dev/vite-plus-prompts",
+	"@voidzero-dev/vite-plus-darwin-arm64",
+	"@voidzero-dev/vite-plus-darwin-x64",
+	"@voidzero-dev/vite-plus-linux-arm64-gnu",
+	"@voidzero-dev/vite-plus-linux-arm64-musl",
+	"@voidzero-dev/vite-plus-linux-x64-gnu",
+	"@voidzero-dev/vite-plus-linux-x64-musl",
+	"@voidzero-dev/vite-plus-win32-arm64-msvc",
+	"@voidzero-dev/vite-plus-win32-x64-msvc",
+	"@voidzero-dev/vite-plus-cli-darwin-arm64",
+	"@voidzero-dev/vite-plus-cli-darwin-x64",
+	"@voidzero-dev/vite-plus-cli-linux-arm64-gnu",
+	"@voidzero-dev/vite-plus-cli-linux-arm64-musl",
+	"@voidzero-dev/vite-plus-cli-linux-x64-gnu",
+	"@voidzero-dev/vite-plus-cli-linux-x64-musl",
+	"@voidzero-dev/vite-plus-cli-win32-arm64-msvc",
+	"@voidzero-dev/vite-plus-cli-win32-x64-msvc",
+	"@oxc-project/types",
+	"@oxlint/plugins",
+	"oxlint",
+	"oxfmt",
+	"oxlint-tsgolint",
+	"vitest",
+	"@vitest/browser-playwright",
+	"@vitest/browser-preview",
+	"@vitest/browser-webdriverio",
+]
