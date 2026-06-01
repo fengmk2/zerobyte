@@ -55,7 +55,9 @@ export const SummarySection = ({ volume, frequency, formValues }: SummarySection
 								</span>
 							))}
 							{formValues.includePaths && formValues.includePaths.length > 20 && (
-								<span className="text-xs text-muted-foreground">+ {formValues.includePaths.length - 20} more</span>
+								<span className="text-xs text-muted-foreground">
+									+ {formValues.includePaths.length - 20} more
+								</span>
 							)}
 							{formValues.includePatterns
 								?.split("\n")

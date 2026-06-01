@@ -36,7 +36,9 @@ export default function Footer() {
 				</div>
 
 				<div className="mt-8 border-t border-border pt-8">
-					<p className="text-center text-sm text-muted-foreground">Open source backup automation for Restic.</p>
+					<p className="text-center text-sm text-muted-foreground">
+						Open source backup automation for Restic.
+					</p>
 				</div>
 			</div>
 		</footer>

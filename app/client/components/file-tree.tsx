@@ -362,7 +362,9 @@ export const FileTree = memo((props: Props) => {
 								onToggle={toggleCollapseState}
 								onHover={onFolderHover}
 								withCheckbox={withCheckboxes}
-								checked={isPathSelected(fileOrFolder.fullPath) && !isPartiallySelected(fileOrFolder.fullPath)}
+								checked={
+									isPathSelected(fileOrFolder.fullPath) && !isPartiallySelected(fileOrFolder.fullPath)
+								}
 								partiallyChecked={isPartiallySelected(fileOrFolder.fullPath)}
 								onCheckboxChange={handleSelectionChange}
 								selectableMode={selectableFolders}
@@ -526,7 +528,11 @@ const File = memo(({ file, onFileSelect, selected, withCheckbox, checked, onChec
 			onClick={handleClick}
 		>
 			{withCheckbox && (
-				<Checkbox checked={checked} onCheckedChange={handleCheckboxChange} onClick={(e) => e.stopPropagation()} />
+				<Checkbox
+					checked={checked}
+					onCheckedChange={handleCheckboxChange}
+					onClick={(e) => e.stopPropagation()}
+				/>
 			)}
 			<span className="truncate">{name}</span>
 			{typeof size === "number" && (

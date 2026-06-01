@@ -71,7 +71,11 @@ export function AppSidebar({ isInstanceAdmin }: Props) {
 		<Sidebar variant="inset" collapsible="icon" className="p-0">
 			<SidebarHeader className="bg-card-header border-b border-border/80 dark:border-border/50 hidden md:flex h-16.25 flex-row items-center p-4">
 				<Link to="/volumes" className="flex items-center gap-3 font-semibold pl-2">
-					<img src="/images/zerobyte.png" alt="Zerobyte Logo" className={cn("h-8 w-8 shrink-0 object-contain -ml-2")} />
+					<img
+						src="/images/zerobyte.png"
+						alt="Zerobyte Logo"
+						className={cn("h-8 w-8 shrink-0 object-contain -ml-2")}
+					/>
 					<span
 						className={cn("text-base transition-all duration-200 -ml-1", {
 							"opacity-0 w-0 overflow-hidden ": isCollapsed,
@@ -101,9 +105,12 @@ export function AppSidebar({ isInstanceAdmin }: Props) {
 															<>
 																{isActive && (
 																	<div
-																		className={cn("absolute left-0 top-0 h-full w-0.75 bg-strong-accent mr-2", {
-																			hidden: isCollapsed,
-																		})}
+																		className={cn(
+																			"absolute left-0 top-0 h-full w-0.75 bg-strong-accent mr-2",
+																			{
+																				hidden: isCollapsed,
+																			},
+																		)}
 																	/>
 																)}
 																<item.icon
@@ -157,9 +164,12 @@ export function AppSidebar({ isInstanceAdmin }: Props) {
 																<>
 																	{isActive && (
 																		<div
-																			className={cn("absolute left-0 top-0 h-full w-0.75 bg-strong-accent mr-2", {
-																				hidden: isCollapsed,
-																			})}
+																			className={cn(
+																				"absolute left-0 top-0 h-full w-0.75 bg-strong-accent mr-2",
+																				{
+																					hidden: isCollapsed,
+																				},
+																			)}
 																		/>
 																	)}
 																	<ShieldCheck

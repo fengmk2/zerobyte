@@ -48,9 +48,16 @@ export const LocalRepositoryForm = ({ form }: Props) => {
 							<div className="flex items-center gap-2">
 								<div className="flex-1 text-sm font-mono bg-muted px-3 py-2 rounded-md border">
 									{field.value || constants.REPOSITORY_BASE}
-									{!isExistingRepository && <span className="text-muted-foreground">/{"{unique-id}"}</span>}
+									{!isExistingRepository && (
+										<span className="text-muted-foreground">/{"{unique-id}"}</span>
+									)}
 								</div>
-								<Button type="button" variant="outline" onClick={() => setShowPathWarning(true)} size="sm">
+								<Button
+									type="button"
+									variant="outline"
+									onClick={() => setShowPathWarning(true)}
+									size="sm"
+								>
 									<Pencil className="h-4 w-4 mr-2" />
 									Change
 								</Button>
@@ -71,13 +78,18 @@ export const LocalRepositoryForm = ({ form }: Props) => {
 									Important: Host mount required
 								</AlertDialogTitle>
 								<AlertDialogDescription className="space-y-3">
-									<p>When selecting a custom path, ensure it is mounted from the host machine into the container.</p>
+									<p>
+										When selecting a custom path, ensure it is mounted from the host machine into
+										the container.
+									</p>
 									<p className="font-medium">
-										If the path is not a host mount, you will lose your repository data when the container restarts.
+										If the path is not a host mount, you will lose your repository data when the
+										container restarts.
 									</p>
 									<p className="text-sm text-muted-foreground">
-										The default path <code className="bg-muted px-1 rounded">{constants.REPOSITORY_BASE}</code> is safe
-										to use if you followed the recommended Docker Compose setup.
+										The default path{" "}
+										<code className="bg-muted px-1 rounded">{constants.REPOSITORY_BASE}</code> is
+										safe to use if you followed the recommended Docker Compose setup.
 									</p>
 								</AlertDialogDescription>
 							</AlertDialogHeader>

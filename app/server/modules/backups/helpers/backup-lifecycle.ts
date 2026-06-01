@@ -74,7 +74,11 @@ export async function validateBackupExecution(scheduleId: number, manual = false
 	}
 
 	if (!repository) {
-		return { type: "failure", error: new NotFoundError("Repository not found"), partialContext: { schedule, volume } };
+		return {
+			type: "failure",
+			error: new NotFoundError("Repository not found"),
+			partialContext: { schedule, volume },
+		};
 	}
 
 	if (!requiresControllerLocalVolumeReadiness(volume)) {

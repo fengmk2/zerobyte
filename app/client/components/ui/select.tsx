@@ -17,7 +17,10 @@ function collectSelectItems(children: React.ReactNode, items = new Map<string, R
 			continue;
 		}
 
-		if ((child.type === SelectItem || child.type === SelectPrimitive.Item) && typeof child.props.value === "string") {
+		if (
+			(child.type === SelectItem || child.type === SelectPrimitive.Item) &&
+			typeof child.props.value === "string"
+		) {
 			items.set(child.props.value, child.props.children);
 		}
 

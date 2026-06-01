@@ -63,7 +63,9 @@ export const BackupSummaryCard = ({ summary }: Props) => {
 				<div className="grid gap-6 grid-cols-2 lg:grid-cols-5">
 					{topStats.map((stat) => (
 						<div key={stat.label} className="flex flex-col gap-1">
-							<span className="text-[11px] uppercase tracking-wide text-muted-foreground">{stat.label}</span>
+							<span className="text-[11px] uppercase tracking-wide text-muted-foreground">
+								{stat.label}
+							</span>
 							<span className="text-sm font-semibold text-foreground">{stat.value}</span>
 						</div>
 					))}

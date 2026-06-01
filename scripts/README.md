@@ -14,14 +14,14 @@ bun scripts/create-test-files.ts [options]
 
 ### Options
 
-| Option | Description | Default |
-|--------|-------------|---------|
-| `-c, --count <num>` | Number of files to create | 10 |
-| `--min-size <size>` | Minimum file size | 1K |
-| `--max-size <size>` | Maximum file size | 1M |
-| `-o, --out <dir>` | Output directory | ./tmp/test-files |
-| `-n, --nested` | Create files in nested subdirectories | false |
-| `-h, --help` | Show help message | - |
+| Option              | Description                           | Default          |
+| ------------------- | ------------------------------------- | ---------------- |
+| `-c, --count <num>` | Number of files to create             | 10               |
+| `--min-size <size>` | Minimum file size                     | 1K               |
+| `--max-size <size>` | Maximum file size                     | 1M               |
+| `-o, --out <dir>`   | Output directory                      | ./tmp/test-files |
+| `-n, --nested`      | Create files in nested subdirectories | false            |
+| `-h, --help`        | Show help message                     | -                |
 
 ### Size Format
 

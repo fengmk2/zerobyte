@@ -187,8 +187,8 @@ export const SMBForm = ({ form }: Props) => {
 							</div>
 						</FormControl>
 						<FormDescription>
-							Keep the old behavior by forcing the SMB mount to present every file and directory as owned by the
-							container user and group instead of using server reported ownership.
+							Keep the old behavior by forcing the SMB mount to present every file and directory as owned
+							by the container user and group instead of using server reported ownership.
 						</FormDescription>
 						<FormMessage />
 					</FormItem>

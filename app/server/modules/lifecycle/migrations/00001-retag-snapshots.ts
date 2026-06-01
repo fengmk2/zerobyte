@@ -68,7 +68,10 @@ const execute = async () => {
 				});
 
 				if (!mirrorRepo) {
-					errors.push({ name: `schedule-mirror:${schedule.name}`, error: `Associated mirror repository not found` });
+					errors.push({
+						name: `schedule-mirror:${schedule.name}`,
+						error: `Associated mirror repository not found`,
+					});
 					continue;
 				}
 

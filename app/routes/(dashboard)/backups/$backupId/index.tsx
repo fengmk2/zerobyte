@@ -27,15 +27,18 @@ export const Route = createFileRoute("/(dashboard)/backups/$backupId/")({
 	loader: async ({ params, context }) => {
 		const { backupId } = params;
 
-		const [schedule, notifs, repos, scheduleNotifs, mirrors, _progress, snapshotTimelineSortOrder] = await Promise.all([
-			context.queryClient.ensureQueryData({ ...getBackupScheduleOptions({ path: { shortId: backupId } }) }),
-			context.queryClient.ensureQueryData({ ...listNotificationDestinationsOptions() }),
-			context.queryClient.ensureQueryData({ ...listRepositoriesOptions() }),
-			context.queryClient.ensureQueryData({ ...getScheduleNotificationsOptions({ path: { shortId: backupId } }) }),
-			context.queryClient.ensureQueryData({ ...getScheduleMirrorsOptions({ path: { shortId: backupId } }) }),
-			context.queryClient.ensureQueryData({ ...getBackupProgressOptions({ path: { shortId: backupId } }) }),
-			fetchSnapshotTimelineSortOrder(),
-		]);
+		const [schedule, notifs, repos, scheduleNotifs, mirrors, _progress, snapshotTimelineSortOrder] =
+			await Promise.all([
+				context.queryClient.ensureQueryData({ ...getBackupScheduleOptions({ path: { shortId: backupId } }) }),
+				context.queryClient.ensureQueryData({ ...listNotificationDestinationsOptions() }),
+				context.queryClient.ensureQueryData({ ...listRepositoriesOptions() }),
+				context.queryClient.ensureQueryData({
+					...getScheduleNotificationsOptions({ path: { shortId: backupId } }),
+				}),
+				context.queryClient.ensureQueryData({ ...getScheduleMirrorsOptions({ path: { shortId: backupId } }) }),
+				context.queryClient.ensureQueryData({ ...getBackupProgressOptions({ path: { shortId: backupId } }) }),
+				fetchSnapshotTimelineSortOrder(),
+			]);
 
 		const snapshotOptions = listSnapshotsOptions({
 			path: { shortId: schedule.repository.shortId },

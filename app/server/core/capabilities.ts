@@ -45,7 +45,8 @@ async function detectRclone(): Promise<boolean> {
 		return true;
 	} catch (_) {
 		logger.warn(
-			`rclone capability: disabled. ` + `To enable: mount rclone config at ${RCLONE_CONFIG_DIR} in docker-compose.yml`,
+			`rclone capability: disabled. ` +
+				`To enable: mount rclone config at ${RCLONE_CONFIG_DIR} in docker-compose.yml`,
 		);
 		return false;
 	}

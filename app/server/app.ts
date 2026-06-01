@@ -84,8 +84,7 @@ export const createApp = () => {
 		}),
 	);
 
-	app
-		.get("/api/healthcheck", (c) => c.json({ status: "ok" }))
+	app.get("/api/healthcheck", (c) => c.json({ status: "ok" }))
 		.route("/api/v1/auth", authController)
 		.route("/api/v1/auth", ssoController)
 		.route("/api/v1/volumes", volumeController)

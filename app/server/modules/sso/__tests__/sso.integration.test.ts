@@ -103,7 +103,10 @@ describe("ssoIntegration.resolveOrgMembership", () => {
 		expect(membership?.organizationId).toBe(organizationId);
 		expect(membership?.role).toBe("member");
 
-		const updatedInvitations = await db.select().from(invitation).where(eq(invitation.organizationId, organizationId));
+		const updatedInvitations = await db
+			.select()
+			.from(invitation)
+			.where(eq(invitation.organizationId, organizationId));
 		const updatedInvitation = updatedInvitations.find((i) => i.email === "invited@example.com");
 		expect(updatedInvitation?.status).toBe("accepted");
 	});
@@ -341,7 +344,10 @@ describe("ssoIntegration.resolveOrgMembership", () => {
 
 		expect(membership.organizationId).toBe(invitedOrgId);
 
-		const [updatedInvitation] = await db.select().from(invitation).where(eq(invitation.organizationId, invitedOrgId));
+		const [updatedInvitation] = await db
+			.select()
+			.from(invitation)
+			.where(eq(invitation.organizationId, invitedOrgId));
 		expect(updatedInvitation.status).toBe("accepted");
 	});
 });
@@ -359,7 +365,9 @@ describe("ssoIntegration.canLinkSsoAccount", () => {
 	async function setupOrgWithProvider(providerId: string, autoLinkMatchingEmails = false) {
 		const orgId = randomId();
 		const ownerId = await createUser(`owner-${randomSlug("u")}@example.com`, randomSlug("owner"));
-		await db.insert(organization).values({ id: orgId, name: "Acme", slug: randomSlug("acme"), createdAt: new Date() });
+		await db
+			.insert(organization)
+			.values({ id: orgId, name: "Acme", slug: randomSlug("acme"), createdAt: new Date() });
 		await db.insert(ssoProvider).values({
 			id: randomId(),
 			providerId,

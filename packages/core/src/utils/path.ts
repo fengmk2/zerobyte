@@ -52,6 +52,8 @@ export const isPathWithin = (base: string, target: string): boolean => {
 	const normalizedTarget = normalizeAbsolutePath(target);
 
 	return (
-		normalizedBase === "/" || normalizedTarget === normalizedBase || normalizedTarget.startsWith(`${normalizedBase}/`)
+		normalizedBase === "/" ||
+		normalizedTarget === normalizedBase ||
+		normalizedTarget.startsWith(`${normalizedBase}/`)
 	);
 };

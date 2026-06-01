@@ -58,7 +58,11 @@ export const CreateScheduleForm = ({ initialValues, formId, onSubmit, volume }: 
 			const excludeIfPresent = parseMultilineEntries(excludeIfPresentText);
 			const parsedIncludePatterns = parseMultilineEntries(includePatterns);
 			const customResticParams = parseMultilineEntries(customResticParamsText);
-			const preBackupWebhook = toWebhookConfig(preBackupWebhookUrl, preBackupWebhookHeadersText, preBackupWebhookBody);
+			const preBackupWebhook = toWebhookConfig(
+				preBackupWebhookUrl,
+				preBackupWebhookHeadersText,
+				preBackupWebhookBody,
+			);
 			const postBackupWebhook = toWebhookConfig(
 				postBackupWebhookUrl,
 				postBackupWebhookHeadersText,
@@ -131,8 +135,8 @@ export const CreateScheduleForm = ({ initialValues, formId, onSubmit, volume }: 
 						<CardHeader>
 							<CardTitle>Backup paths</CardTitle>
 							<CardDescription>
-								Select which folders or files to include in the backup. If no paths are selected, the entire volume will
-								be backed up.
+								Select which folders or files to include in the backup. If no paths are selected, the
+								entire volume will be backed up.
 							</CardDescription>
 						</CardHeader>
 						<CardContent>
@@ -152,8 +156,8 @@ export const CreateScheduleForm = ({ initialValues, formId, onSubmit, volume }: 
 						<CardHeader>
 							<CardTitle>Exclude patterns</CardTitle>
 							<CardDescription>
-								Optionally specify patterns to exclude from backups. Enter one pattern per line (e.g., *.tmp,
-								node_modules/**, .cache/).
+								Optionally specify patterns to exclude from backups. Enter one pattern per line (e.g.,
+								*.tmp, node_modules/**, .cache/).
 							</CardDescription>
 						</CardHeader>
 						<CardContent>
@@ -164,7 +168,9 @@ export const CreateScheduleForm = ({ initialValues, formId, onSubmit, volume }: 
 					<Card className="min-w-0 @container">
 						<CardHeader>
 							<CardTitle>Retention policy</CardTitle>
-							<CardDescription>Define how many snapshots to keep. Leave empty to keep all.</CardDescription>
+							<CardDescription>
+								Define how many snapshots to keep. Leave empty to keep all.
+							</CardDescription>
 						</CardHeader>
 						<CardContent className="grid gap-4 @medium:grid-cols-2">
 							<RetentionSection form={form} />

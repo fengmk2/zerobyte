@@ -124,7 +124,8 @@ export default function RepositoryDetailsPage({
 											className={cn("w-2 h-2 rounded-full shrink-0", {
 												"bg-success": repository.status === "healthy",
 												"bg-red-500": repository.status === "error",
-												"bg-amber-500": repository.status !== "healthy" && repository.status !== "error",
+												"bg-amber-500":
+													repository.status !== "healthy" && repository.status !== "error",
 												"animate-pulse": repository.status === "doctor",
 											})}
 										/>
@@ -169,20 +170,25 @@ export default function RepositoryDetailsPage({
 									</Button>
 								</DropdownMenuTrigger>
 								<DropdownMenuContent align="end">
-									<DropdownMenuItem onClick={() => navigate({ to: `/repositories/${repository.shortId}/edit` })}>
+									<DropdownMenuItem
+										onClick={() => navigate({ to: `/repositories/${repository.shortId}/edit` })}
+									>
 										<Pencil />
 										Edit
 									</DropdownMenuItem>
 									<DropdownMenuItem
 										onClick={() =>
-											toast.promise(unlockRepo.mutateAsync({ path: { shortId: repository.shortId } }), {
-												loading: "Unlocking repo",
-												success: "Repository unlocked successfully",
-												error: (e) =>
-													toast.error("Failed to unlock repository", {
-														description: parseError(e)?.message,
-													}),
-											})
+											toast.promise(
+												unlockRepo.mutateAsync({ path: { shortId: repository.shortId } }),
+												{
+													loading: "Unlocking repo",
+													success: "Repository unlocked successfully",
+													error: (e) =>
+														toast.error("Failed to unlock repository", {
+															description: parseError(e)?.message,
+														}),
+												},
+											)
 										}
 										disabled={unlockRepo.isPending}
 									>
@@ -213,7 +219,10 @@ export default function RepositoryDetailsPage({
 					</Card>
 				)}
 
-				<Tabs value={activeTab} onValueChange={(value) => navigate({ to: ".", search: () => ({ tab: value }) })}>
+				<Tabs
+					value={activeTab}
+					onValueChange={(value) => navigate({ to: ".", search: () => ({ tab: value }) })}
+				>
 					<TabsList className="mb-2">
 						<TabsTrigger value="info">Configuration</TabsTrigger>
 						<TabsTrigger value="snapshots">Snapshots</TabsTrigger>
@@ -236,8 +245,9 @@ export default function RepositoryDetailsPage({
 					<AlertDialogHeader>
 						<AlertDialogTitle>Delete repository?</AlertDialogTitle>
 						<AlertDialogDescription>
-							Are you sure you want to delete the repository <strong>{repository.name}</strong>? This will not remove
-							the actual data from the backend storage, only the repository configuration will be deleted.
+							Are you sure you want to delete the repository <strong>{repository.name}</strong>? This will
+							not remove the actual data from the backend storage, only the repository configuration will
+							be deleted.
 							<br />
 							<br />
 							All backup schedules associated with this repository will also be removed.

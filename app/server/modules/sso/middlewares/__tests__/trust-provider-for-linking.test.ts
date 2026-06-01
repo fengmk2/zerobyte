@@ -107,9 +107,9 @@ describe("resolveTrustedProvidersForRequest", () => {
 	test("supports callback paths nested under /api/auth", async () => {
 		await createSsoProviderRecord("prefixed-provider", true);
 
-		expect(await resolveTrustedProvidersForRequest(createRequest("/api/auth/sso/callback/prefixed-provider"))).toEqual([
-			"prefixed-provider",
-		]);
+		expect(
+			await resolveTrustedProvidersForRequest(createRequest("/api/auth/sso/callback/prefixed-provider")),
+		).toEqual(["prefixed-provider"]);
 	});
 
 	test("supports /sso/saml2/sp/acs/:providerId paths", async () => {
@@ -123,9 +123,14 @@ describe("resolveTrustedProvidersForRequest", () => {
 	test("updates trusted providers immediately when callback provider auto-linking is toggled", async () => {
 		await createSsoProviderRecord("pocket-id", true);
 
-		expect(await resolveTrustedProvidersForRequest(createRequest("/sso/callback/pocket-id"))).toEqual(["pocket-id"]);
+		expect(await resolveTrustedProvidersForRequest(createRequest("/sso/callback/pocket-id"))).toEqual([
+			"pocket-id",
+		]);
 
-		await db.update(ssoProvider).set({ autoLinkMatchingEmails: false }).where(eq(ssoProvider.providerId, "pocket-id"));
+		await db
+			.update(ssoProvider)
+			.set({ autoLinkMatchingEmails: false })
+			.where(eq(ssoProvider.providerId, "pocket-id"));
 
 		expect(await resolveTrustedProvidersForRequest(createRequest("/sso/callback/pocket-id"))).toEqual([]);
 	});
