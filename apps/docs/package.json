@@ -52,7 +52,7 @@
 		"typescript": "^6.0.3",
 		"vite": "^8.0.14",
 		"vite-plugin-killer-instincts": "^1.1.0",
-		"vite-plus": "^0.1.22",
+		"vite-plus": "https://pkg.pr.new/voidzero-dev/vite-plus@1738",
 		"vitest": "^4.1.7",
 		"wrangler": "^4.95.0"
 	},
