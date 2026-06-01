@@ -21,7 +21,9 @@ describe("mapAuthErrorToCode", () => {
 	test("maps invite-required errors to INVITE_REQUIRED", () => {
 		expect(
 			mapAuthErrorToCode(
-				encodeURIComponent("Access denied. You must be invited to this organization before you can sign in with SSO."),
+				encodeURIComponent(
+					"Access denied. You must be invited to this organization before you can sign in with SSO.",
+				),
 			),
 		).toBe("INVITE_REQUIRED");
 	});

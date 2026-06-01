@@ -22,14 +22,14 @@ Most commands prompt for missing values when run interactively.
 
 ## Commands
 
-| Command | Useful for |
-|---------|------------|
-| `reset-password` | Reset a user's password when they are locked out or forgot it. Invalidates existing sessions. |
-| `disable-2fa` | Disable two-factor authentication for a user who lost access to their 2FA device. |
-| `change-username` | Rename a user account. Invalidates existing sessions. |
-| `change-email` | Change a user's email address. Removes linked SSO accounts for that user and invalidates sessions. |
-| `rekey-2fa` | Re-encrypt existing 2FA secrets using the current `APP_SECRET`, usually after migrating from an older secret setup. |
-| `assign-organization` | Move a user to another organization by organization slug. Invalidates existing sessions. |
+| Command               | Useful for                                                                                                          |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `reset-password`      | Reset a user's password when they are locked out or forgot it. Invalidates existing sessions.                       |
+| `disable-2fa`         | Disable two-factor authentication for a user who lost access to their 2FA device.                                   |
+| `change-username`     | Rename a user account. Invalidates existing sessions.                                                               |
+| `change-email`        | Change a user's email address. Removes linked SSO accounts for that user and invalidates sessions.                  |
+| `rekey-2fa`           | Re-encrypt existing 2FA secrets using the current `APP_SECRET`, usually after migrating from an older secret setup. |
+| `assign-organization` | Move a user to another organization by organization slug. Invalidates existing sessions.                            |
 
 ## Examples
 

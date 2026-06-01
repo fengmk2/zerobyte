@@ -8,6 +8,11 @@ export const deriveLocalAgentToken = async () => {
 export const validateAgentToken = async (token: string) => {
 	const localToken = await deriveLocalAgentToken();
 	if (token === localToken) {
-		return { agentId: LOCAL_AGENT_ID, organizationId: null, agentName: LOCAL_AGENT_NAME, agentKind: LOCAL_AGENT_KIND };
+		return {
+			agentId: LOCAL_AGENT_ID,
+			organizationId: null,
+			agentName: LOCAL_AGENT_NAME,
+			agentKind: LOCAL_AGENT_KIND,
+		};
 	}
 };

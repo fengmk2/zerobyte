@@ -147,8 +147,10 @@ export function OrgMembersSection({ initialMembers }: Props) {
 													<AlertDialogHeader>
 														<AlertDialogTitle>Remove member</AlertDialogTitle>
 														<AlertDialogDescription>
-															Are you sure you want to remove <strong>{memberToRemove?.name}</strong> from this
-															organization? They will lose access to all organization resources.
+															Are you sure you want to remove{" "}
+															<strong>{memberToRemove?.name}</strong> from this
+															organization? They will lose access to all organization
+															resources.
 														</AlertDialogDescription>
 													</AlertDialogHeader>
 													<AlertDialogFooter>
@@ -156,7 +158,11 @@ export function OrgMembersSection({ initialMembers }: Props) {
 														<AlertDialogAction
 															className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
 															disabled={removeMember.isPending}
-															onClick={() => removeMember.mutate({ path: { memberId: memberToRemove!.id } })}
+															onClick={() =>
+																removeMember.mutate({
+																	path: { memberId: memberToRemove!.id },
+																})
+															}
 														>
 															Remove
 														</AlertDialogAction>

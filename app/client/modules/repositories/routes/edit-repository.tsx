@@ -166,8 +166,8 @@ export function EditRepositoryPage({ repositoryId }: { repositoryId: string }) {
 					<AlertDialogHeader>
 						<AlertDialogTitle>Repository location changed</AlertDialogTitle>
 						<AlertDialogDescription>
-							Changing endpoint, bucket, host, or path fields may point to a different repository location. Before
-							saving, ensure the repository already exists at the new target.
+							Changing endpoint, bucket, host, or path fields may point to a different repository
+							location. Before saving, ensure the repository already exists at the new target.
 						</AlertDialogDescription>
 					</AlertDialogHeader>
 					<AlertDialogFooter>

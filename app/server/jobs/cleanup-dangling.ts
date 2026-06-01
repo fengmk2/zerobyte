@@ -16,7 +16,9 @@ import { LOCAL_AGENT_ID } from "../modules/agents/constants";
 export class CleanupDanglingMountsJob extends Job {
 	async run() {
 		if (config.flags.enableLocalAgent) {
-			logger.debug("Skipping controller-local dangling mount cleanup because local volume execution is agent-owned.");
+			logger.debug(
+				"Skipping controller-local dangling mount cleanup because local volume execution is agent-owned.",
+			);
 			return { done: true, timestamp: new Date() };
 		}
 

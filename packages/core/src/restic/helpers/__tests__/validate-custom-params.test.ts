@@ -41,7 +41,11 @@ const validCustomParamArb = fc.oneof(
 		.tuple(fc.constantFrom(...positiveIntegerFlags), fc.integer({ min: 1, max: 100_000 }), fc.boolean())
 		.map(([flag, value, inline]) => (inline ? `${flag}=${value}` : `${flag} ${value}`)),
 	fc
-		.tuple(fc.integer({ min: 1, max: 100_000 }), fc.constantFrom("", "K", "M", "G", "T", "KiB", "MiB"), fc.boolean())
+		.tuple(
+			fc.integer({ min: 1, max: 100_000 }),
+			fc.constantFrom("", "K", "M", "G", "T", "KiB", "MiB"),
+			fc.boolean(),
+		)
 		.map(([value, suffix, inline]) =>
 			inline ? `--exclude-larger-than=${value}${suffix}` : `--exclude-larger-than ${value}${suffix}`,
 		),

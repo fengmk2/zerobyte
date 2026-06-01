@@ -84,7 +84,9 @@ export function CompressionStatsChart({ repositoryShortId, initialStats }: Props
 					<RefreshCw className={cn("h-4 w-4", { "animate-spin": refreshStats.isPending })} />
 				</Button>
 			</div>
-			<p className={cn("text-sm text-muted-foreground", { hidden: !isPending })}>Loading compression statistics...</p>
+			<p className={cn("text-sm text-muted-foreground", { hidden: !isPending })}>
+				Loading compression statistics...
+			</p>
 			<div className={cn("space-y-2", { hidden: !error || isPending })}>
 				<p className="text-sm font-medium text-destructive">Failed to load compression statistics</p>
 				<p className="text-sm text-muted-foreground wrap-break-word">{error?.message}</p>
@@ -96,8 +98,13 @@ export function CompressionStatsChart({ repositoryShortId, initialStats }: Props
 				<div className="mb-6">
 					<div className="flex items-center justify-between text-sm mb-3">
 						<span className="text-muted-foreground">
-							<ByteSize base={1024} bytes={uncompressedSize} className="font-mono font-semibold text-foreground" /> of
-							data across <span className="font-mono font-semibold text-foreground">{snapshotsCount}</span> snapshots
+							<ByteSize
+								base={1024}
+								bytes={uncompressedSize}
+								className="font-mono font-semibold text-foreground"
+							/>{" "}
+							of data across{" "}
+							<span className="font-mono font-semibold text-foreground">{snapshotsCount}</span> snapshots
 						</span>
 					</div>
 					<div className="h-9 rounded overflow-hidden flex">

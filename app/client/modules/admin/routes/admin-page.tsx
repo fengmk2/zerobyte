@@ -58,7 +58,9 @@ export function AdminPage({ appContext }: Props) {
 									<Users className="size-5" />
 									User Management
 								</CardTitle>
-								<CardDescription className="mt-1.5">Manage users, roles and permissions</CardDescription>
+								<CardDescription className="mt-1.5">
+									Manage users, roles and permissions
+								</CardDescription>
 							</div>
 							<UserManagement currentUser={appContext.user} />
 						</Card>
@@ -79,7 +81,9 @@ export function AdminPage({ appContext }: Props) {
 										<Label htmlFor="enable-registrations" className="text-base">
 											Enable new user registrations
 										</Label>
-										<p className="text-sm text-muted-foreground max-w-2xl">When enabled, new users can sign up</p>
+										<p className="text-sm text-muted-foreground max-w-2xl">
+											When enabled, new users can sign up
+										</p>
 									</div>
 									<Switch
 										id="enable-registrations"

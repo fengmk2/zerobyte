@@ -57,7 +57,10 @@ function RootLayout() {
 		<html lang="en" className={theme === "dark" ? "dark" : undefined} style={{ colorScheme: theme }}>
 			<head>
 				<meta charSet="utf-8" />
-				<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+				<meta
+					name="viewport"
+					content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+				/>
 				<link rel="icon" type="image/png" href="/images/favicon/favicon-96x96.png" sizes="96x96" />
 				<link rel="icon" type="image/svg+xml" href="/images/favicon/favicon.svg" />
 				<link rel="shortcut icon" href="/images/favicon/favicon.ico" />

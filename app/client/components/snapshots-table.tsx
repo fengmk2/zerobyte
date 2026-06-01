@@ -216,7 +216,9 @@ export const SnapshotsTable = ({ snapshots, repositoryId, backups, listSnapshots
 									<TableCell className="hidden md:table-cell">
 										<div className="flex items-center justify-end gap-2">
 											<Clock className="h-4 w-4 text-muted-foreground" />
-											<span className="text-sm text-muted-foreground">{formatDuration(snapshot.duration / 1000)}</span>
+											<span className="text-sm text-muted-foreground">
+												{formatDuration(snapshot.duration / 1000)}
+											</span>
 										</div>
 									</TableCell>
 								</TableRow>
@@ -269,8 +271,8 @@ export const SnapshotsTable = ({ snapshots, repositoryId, backups, listSnapshots
 					<AlertDialogHeader>
 						<AlertDialogTitle>Delete {selectedIds.size} snapshots?</AlertDialogTitle>
 						<AlertDialogDescription>
-							This action cannot be undone. This will permanently delete the selected snapshots and all their data from
-							the repository.
+							This action cannot be undone. This will permanently delete the selected snapshots and all
+							their data from the repository.
 						</AlertDialogDescription>
 					</AlertDialogHeader>
 					<AlertDialogFooter>
@@ -291,8 +293,8 @@ export const SnapshotsTable = ({ snapshots, repositoryId, backups, listSnapshots
 					<DialogHeader>
 						<DialogTitle>Re-tag snapshots</DialogTitle>
 						<DialogDescription>
-							Select a backup schedule to re-tag the {selectedIds.size} selected snapshots. All {selectedIds.size}{" "}
-							selected snapshots will be associated with the chosen schedule.
+							Select a backup schedule to re-tag the {selectedIds.size} selected snapshots. All{" "}
+							{selectedIds.size} selected snapshots will be associated with the chosen schedule.
 						</DialogDescription>
 					</DialogHeader>
 					<div className="py-4">

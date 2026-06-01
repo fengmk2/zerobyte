@@ -78,7 +78,10 @@ export const systemController = new Hono()
 
 				const content = await cryptoUtils.resolveSecret(org.metadata.resticPassword);
 
-				await db.update(usersTable).set({ hasDownloadedResticPassword: true }).where(eq(usersTable.id, user.id));
+				await db
+					.update(usersTable)
+					.set({ hasDownloadedResticPassword: true })
+					.where(eq(usersTable.id, user.id));
 
 				c.header("Content-Type", "text/plain");
 				c.header("Content-Disposition", 'attachment; filename="restic.pass"');

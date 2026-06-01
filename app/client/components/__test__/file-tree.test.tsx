@@ -266,7 +266,10 @@ describe("FileTree Selection Logic", () => {
 		];
 
 		render(
-			<FileTreeSelection files={files} initialSelectedPaths={["/hello", "/hello_prev", "/service/app/data/upload"]} />,
+			<FileTreeSelection
+				files={files}
+				initialSelectedPaths={["/hello", "/hello_prev", "/service/app/data/upload"]}
+			/>,
 		);
 
 		fireEvent.click(getCheckboxFor("service"));

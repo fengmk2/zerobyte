@@ -175,7 +175,8 @@ function formatShortDate(date: DateInput, options: DateFormatOptions = {}): stri
 function formatShortDateTime(date: DateInput, options: DateFormatOptions = {}): string {
 	return formatValidDate(
 		date,
-		(validDate) => `${formatConfiguredDate(validDate, options, false)}, ${formatConfiguredTime(validDate, options)}`,
+		(validDate) =>
+			`${formatConfiguredDate(validDate, options, false)}, ${formatConfiguredTime(validDate, options)}`,
 	);
 }
 
@@ -212,10 +213,12 @@ export function useTimeFormat() {
 	return useMemo(
 		() => ({
 			formatDateTime: (date: DateInput) => formatDateTime(date, { locale, timeZone, dateFormat, timeFormat }),
-			formatDateWithMonth: (date: DateInput) => formatDateWithMonth(date, { locale, timeZone, dateFormat, timeFormat }),
+			formatDateWithMonth: (date: DateInput) =>
+				formatDateWithMonth(date, { locale, timeZone, dateFormat, timeFormat }),
 			formatDate: (date: DateInput) => formatDate(date, { locale, timeZone, dateFormat, timeFormat }),
 			formatShortDate: (date: DateInput) => formatShortDate(date, { locale, timeZone, dateFormat, timeFormat }),
-			formatShortDateTime: (date: DateInput) => formatShortDateTime(date, { locale, timeZone, dateFormat, timeFormat }),
+			formatShortDateTime: (date: DateInput) =>
+				formatShortDateTime(date, { locale, timeZone, dateFormat, timeFormat }),
 			formatTime: (date: DateInput) => formatTime(date, { locale, timeZone, dateFormat, timeFormat }),
 			formatTimeAgo: (date: DateInput) => formatTimeAgo(date, currentNow),
 		}),

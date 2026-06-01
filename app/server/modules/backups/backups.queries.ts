@@ -48,7 +48,9 @@ export const scheduleQueries = {
 		return db
 			.update(backupSchedulesTable)
 			.set({ ...status, updatedAt: Date.now() })
-			.where(and(eq(backupSchedulesTable.id, scheduleId), eq(backupSchedulesTable.organizationId, organizationId)));
+			.where(
+				and(eq(backupSchedulesTable.id, scheduleId), eq(backupSchedulesTable.organizationId, organizationId)),
+			);
 	},
 };
 

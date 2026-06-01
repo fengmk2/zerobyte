@@ -80,12 +80,16 @@ describe("isPathWithin", () => {
 
 	test("matches descendants created under the same normalized base", () => {
 		fc.assert(
-			fc.property(fc.string({ maxLength: 80 }), fc.array(safePathSegmentArb, { maxLength: 5 }), (base, segments) => {
-				const normalizedBase = normalizeAbsolutePath(base);
-				const descendant = path.posix.join(normalizedBase, ...segments);
+			fc.property(
+				fc.string({ maxLength: 80 }),
+				fc.array(safePathSegmentArb, { maxLength: 5 }),
+				(base, segments) => {
+					const normalizedBase = normalizeAbsolutePath(base);
+					const descendant = path.posix.join(normalizedBase, ...segments);
 
-				expect(isPathWithin(base, descendant)).toBe(true);
-			}),
+					expect(isPathWithin(base, descendant)).toBe(true);
+				},
+			),
 		);
 	});
 });

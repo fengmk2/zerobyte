@@ -232,7 +232,9 @@ describe("backup command", () => {
 
 			const error = await runBackupError(config, "/mnt/data", { organizationId: "org-1" }, mockDeps);
 			expect(error).toBeInstanceOf(ResticError);
-			expect((error as ResticError).summary).toBe("Command failed: An error occurred while executing the command.");
+			expect((error as ResticError).summary).toBe(
+				"Command failed: An error occurred while executing the command.",
+			);
 			expect((error as ResticError).details).toBe(
 				"Permissions 0755 for '/tmp/zerobyte-ssh-key' are too open.\nThis private key will be ignored.",
 			);
@@ -327,7 +329,8 @@ describe("backup command", () => {
 		test("ignores valid JSON lines that do not match the progress schema", async () => {
 			const progressUpdates: unknown[] = [];
 			setup({
-				onSpawnCall: (params) => params.onStdout?.(JSON.stringify({ message_type: "verbose_status", action: "scan" })),
+				onSpawnCall: (params) =>
+					params.onStdout?.(JSON.stringify({ message_type: "verbose_status", action: "scan" })),
 			});
 
 			await runBackup(

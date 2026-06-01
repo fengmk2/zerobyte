@@ -160,13 +160,21 @@ export const ScheduleSummary = (props: Props) => {
 							</DropdownMenuTrigger>
 							<DropdownMenuContent align="end">
 								{schedule.retentionPolicy && (
-									<DropdownMenuItem onClick={() => setShowForgetConfirm(true)} disabled={runForget.isPending}>
+									<DropdownMenuItem
+										onClick={() => setShowForgetConfirm(true)}
+										disabled={runForget.isPending}
+									>
 										<Eraser />
 										Run cleanup
 									</DropdownMenuItem>
 								)}
 								<DropdownMenuItem
-									onClick={() => navigate({ to: "/backups/$backupId/edit", params: { backupId: schedule.shortId } })}
+									onClick={() =>
+										navigate({
+											to: "/backups/$backupId/edit",
+											params: { backupId: schedule.shortId },
+										})
+									}
 								>
 									<Pencil />
 									Edit schedule
@@ -223,7 +231,9 @@ export const ScheduleSummary = (props: Props) => {
 										"hover:bg-red-500/10": schedule.lastBackupStatus === "error",
 									})}
 								>
-									<span>{schedule.lastBackupStatus === "warning" ? "Warning details" : "Error details"}</span>
+									<span>
+										{schedule.lastBackupStatus === "warning" ? "Warning details" : "Error details"}
+									</span>
 								</CollapsibleTrigger>
 								<CollapsibleContent
 									className={cn("border-t border-border/50 bg-muted/30", {
@@ -258,8 +268,9 @@ export const ScheduleSummary = (props: Props) => {
 					<AlertDialogHeader>
 						<AlertDialogTitle>Delete backup schedule?</AlertDialogTitle>
 						<AlertDialogDescription>
-							Are you sure you want to delete this backup schedule for <strong>{schedule.volume.name}</strong>? This
-							action cannot be undone. Existing snapshots will not be deleted.
+							Are you sure you want to delete this backup schedule for{" "}
+							<strong>{schedule.volume.name}</strong>? This action cannot be undone. Existing snapshots
+							will not be deleted.
 						</AlertDialogDescription>
 					</AlertDialogHeader>
 					<div className="flex gap-3 justify-end">
@@ -279,8 +290,8 @@ export const ScheduleSummary = (props: Props) => {
 					<AlertDialogHeader>
 						<AlertDialogTitle>Run retention policy cleanup?</AlertDialogTitle>
 						<AlertDialogDescription>
-							This will apply the retention policy and permanently delete old snapshots according to the configured
-							rules ({summary.retentionLabel}). This action cannot be undone.
+							This will apply the retention policy and permanently delete old snapshots according to the
+							configured rules ({summary.retentionLabel}). This action cannot be undone.
 						</AlertDialogDescription>
 					</AlertDialogHeader>
 					<div className="flex gap-3 justify-end">

@@ -60,9 +60,20 @@ export function EditBackupPage({ backupId }: { backupId: string }) {
 
 	return (
 		<div>
-			<CreateScheduleForm volume={schedule.volume} initialValues={schedule} onSubmit={handleSubmit} formId={formId} />
+			<CreateScheduleForm
+				volume={schedule.volume}
+				initialValues={schedule}
+				onSubmit={handleSubmit}
+				formId={formId}
+			/>
 			<div className="flex justify-end mt-4 gap-2">
-				<Button type="submit" className="ml-auto" variant="primary" form={formId} loading={updateSchedule.isPending}>
+				<Button
+					type="submit"
+					className="ml-auto"
+					variant="primary"
+					form={formId}
+					loading={updateSchedule.isPending}
+				>
 					<Save className="h-4 w-4 mr-2" />
 					Update schedule
 				</Button>
