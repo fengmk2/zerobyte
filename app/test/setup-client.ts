@@ -1,5 +1,5 @@
 import "./setup-shared";
-import { afterAll, afterEach, beforeAll, vi } from "vitest";
+import { afterAll, afterEach, beforeAll, vi } from "vite-plus/test";
 import { client } from "~/client/api-client/client.gen";
 import { server } from "~/test/msw/server";
 

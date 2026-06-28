@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "vite-plus/test";
 import { getVolumeMountPath } from "./volume-path";
 import { fromAny } from "@total-typescript/shoehorn";
 

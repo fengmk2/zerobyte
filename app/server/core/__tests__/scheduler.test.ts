@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, test, vi } from "vitest";
+import { afterEach, describe, expect, test, vi } from "vite-plus/test";
 import { logger } from "@zerobyte/core/node";
 import { Job, Scheduler } from "../scheduler";
 

@@ -1,5 +1,5 @@
 import waitForExpect from "wait-for-expect";
-import { afterEach, describe, expect, test, vi } from "vitest";
+import { afterEach, describe, expect, test, vi } from "vite-plus/test";
 import { eq } from "drizzle-orm";
 import { backupsService } from "../backups.service";
 import { createTestVolume } from "~/test/helpers/volume";

@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, test, vi } from "vitest";
+import { beforeEach, describe, expect, test, vi } from "vite-plus/test";
 
 vi.mock("better-auth/crypto", () => ({
 	hashPassword: vi.fn(async () => "test-account-password-hash"),

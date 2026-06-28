@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, test } from "vitest";
+import { beforeEach, describe, expect, test } from "vite-plus/test";
 import type { GenericEndpointContext } from "better-auth";
 import { eq } from "drizzle-orm";
 import { db } from "~/server/db/db";

@@ -54,7 +54,12 @@ export function CreateVolumePage() {
 							</AlertDescription>
 						</Alert>
 					)}
-					<CreateVolumeForm mode="create" formId={formId} onSubmit={handleSubmit} loading={createVolume.isPending} />
+					<CreateVolumeForm
+						mode="create"
+						formId={formId}
+						onSubmit={handleSubmit}
+						loading={createVolume.isPending}
+					/>
 					<div className="flex justify-end gap-2 pt-4 border-t">
 						<Button type="button" variant="secondary" onClick={() => navigate({ to: "/volumes" })}>
 							Cancel

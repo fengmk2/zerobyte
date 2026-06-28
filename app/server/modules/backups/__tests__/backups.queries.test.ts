@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "vite-plus/test";
 import { scheduleQueries } from "../backups.queries";
 import { createTestBackupSchedule } from "~/test/helpers/backup";
 import { createTestVolume } from "~/test/helpers/volume";

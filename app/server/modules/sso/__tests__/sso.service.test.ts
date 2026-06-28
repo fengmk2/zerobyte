@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, test } from "vitest";
+import { beforeEach, describe, expect, test } from "vite-plus/test";
 import { db, sqlite } from "~/server/db/db";
 import { account, invitation, member, organization, sessionsTable, ssoProvider, usersTable } from "~/server/db/schema";
 import {
@@ -195,7 +195,9 @@ describe("ssoService.deleteSsoProvider", () => {
 		`);
 
 		try {
-			await expect(ssoService.deleteSsoProvider(providerId, org)).rejects.toThrow("forced deleteSsoProvider rollback");
+			await expect(ssoService.deleteSsoProvider(providerId, org)).rejects.toThrow(
+				"forced deleteSsoProvider rollback",
+			);
 		} finally {
 			dropTrigger(DELETE_SSO_PROVIDER_ROLLBACK_TRIGGER);
 		}

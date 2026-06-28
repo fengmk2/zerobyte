@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from "vitest";
+import { describe, expect, test, vi } from "vite-plus/test";
 import { eq } from "drizzle-orm";
 import { db } from "~/server/db/db";
 import { repositoryLocksTable, repositoryLockWaitersTable } from "~/server/db/schema";

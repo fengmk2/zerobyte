@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, test } from "vitest";
+import { beforeEach, describe, expect, test } from "vite-plus/test";
 import { createApp } from "~/server/app";
 import { account, invitation, member, organization, ssoProvider, usersTable } from "~/server/db/schema";
 import { db } from "~/server/db/db";

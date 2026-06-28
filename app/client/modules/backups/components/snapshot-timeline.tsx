@@ -131,12 +131,17 @@ export const SnapshotTimeline = (props: Props) => {
 											},
 										)}
 									>
-										<div className="text-xs font-semibold text-foreground">{formatShortDate(date)}</div>
+										<div className="text-xs font-semibold text-foreground">
+											{formatShortDate(date)}
+										</div>
 										<div className="text-xs text-muted-foreground">{formatTime(date)}</div>
 										<div className="text-xs text-muted-foreground opacity-75">
 											<ByteSize bytes={snapshot.size} base={1024} />
 										</div>
-										<RetentionCategoryBadges categories={snapshot.retentionCategories} className="mt-1" />
+										<RetentionCategoryBadges
+											categories={snapshot.retentionCategories}
+											className="mt-1"
+										/>
 									</button>
 								);
 							})}

@@ -10,7 +10,7 @@
 			"fumadocs-mdx:collections/*": ["./.source/*"]
 		},
 		"lib": ["ES2022", "DOM", "DOM.Iterable"],
-		"types": ["vite/client"],
+		"types": ["vite-plus/client"],
 
 		/* Bundler mode */
 		"moduleResolution": "bundler",

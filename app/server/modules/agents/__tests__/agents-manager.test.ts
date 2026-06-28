@@ -1,7 +1,7 @@
 import { EventEmitter } from "node:events";
 import { PassThrough } from "node:stream";
 import { Effect } from "effect";
-import { afterEach, beforeEach, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, expect, test, vi } from "vite-plus/test";
 import { fromAny } from "@total-typescript/shoehorn";
 import type { ProcessWithAgentRuntime } from "../helpers/runtime-state.dev";
 

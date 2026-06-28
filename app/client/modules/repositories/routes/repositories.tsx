@@ -37,7 +37,9 @@ type RepositoryRow = {
 const repositoryColumns: ColumnDef<RepositoryRow>[] = [
 	{
 		accessorKey: "name",
-		header: ({ column }) => <DataTableSortHeader column={column} title="Name" sortDirection={column.getIsSorted()} />,
+		header: ({ column }) => (
+			<DataTableSortHeader column={column} title="Name" sortDirection={column.getIsSorted()} />
+		),
 		cell: ({ row }) => (
 			<div className="flex items-center gap-2">
 				<span>{row.original.name}</span>
@@ -78,7 +80,13 @@ const repositoryColumns: ColumnDef<RepositoryRow>[] = [
 		),
 		cell: ({ row }) => (
 			<StatusDot
-				variant={row.original.status === "healthy" ? "success" : row.original.status === "error" ? "error" : "warning"}
+				variant={
+					row.original.status === "healthy"
+						? "success"
+						: row.original.status === "error"
+							? "error"
+							: "warning"
+				}
 				label={row.original.status || "unknown"}
 			/>
 		),
@@ -193,7 +201,9 @@ export function RepositoriesPage() {
 											"text-center": header.column.id === "status",
 										})}
 									>
-										{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+										{header.isPlaceholder
+											? null
+											: flexRender(header.column.columnDef.header, header.getContext())}
 									</TableHead>
 								))}
 							</TableRow>

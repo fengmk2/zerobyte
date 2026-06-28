@@ -3,7 +3,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import type { RepositoryConfig } from "@zerobyte/core/restic";
 import { Effect } from "effect";
-import { expect, test } from "vitest";
+import { expect, test } from "vite-plus/test";
 import { makeNfsBackend } from "../../../../apps/agent/src/volume-host/backends/nfs";
 import { makeSmbBackend } from "../../../../apps/agent/src/volume-host/backends/smb";
 import { makeSftpBackend } from "../../../../apps/agent/src/volume-host/backends/sftp";

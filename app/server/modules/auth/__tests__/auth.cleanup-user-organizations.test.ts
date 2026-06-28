@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, test } from "vitest";
+import { beforeEach, describe, expect, test } from "vite-plus/test";
 import { db, sqlite } from "~/server/db/db";
 import { member, organization, sessionsTable, usersTable } from "~/server/db/schema";
 import {
@@ -162,7 +162,9 @@ describe("authService.cleanupUserOrganizations", () => {
 		`);
 
 		try {
-			await expect(authService.cleanupUserOrganizations(deletedUserId)).rejects.toThrow("forced cleanup rollback");
+			await expect(authService.cleanupUserOrganizations(deletedUserId)).rejects.toThrow(
+				"forced cleanup rollback",
+			);
 		} finally {
 			dropTrigger(CLEANUP_USER_ORGS_ROLLBACK_TRIGGER);
 		}

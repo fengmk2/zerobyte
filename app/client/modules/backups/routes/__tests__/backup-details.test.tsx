@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vite-plus/test";
 import { fromAny } from "@total-typescript/shoehorn";
 import { HttpResponse, http, server } from "~/test/msw/server";
 import { cleanup, render, screen } from "~/test/test-utils";

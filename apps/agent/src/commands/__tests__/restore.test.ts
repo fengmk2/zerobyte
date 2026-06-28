@@ -1,5 +1,5 @@
 import { Effect } from "effect";
-import { afterEach, expect, test, vi } from "vitest";
+import { afterEach, expect, test, vi } from "vite-plus/test";
 import waitForExpect from "wait-for-expect";
 import { fromPartial } from "@total-typescript/shoehorn";
 import { parseAgentMessage, type RestoreRunPayload } from "@zerobyte/contracts/agent-protocol";

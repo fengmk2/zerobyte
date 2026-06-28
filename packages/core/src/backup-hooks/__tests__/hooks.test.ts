@@ -1,6 +1,6 @@
 import nodeHttp, { type IncomingMessage, type Server, type ServerResponse } from "node:http";
 import { Effect } from "effect";
-import { afterEach, beforeEach, expect, test } from "vitest";
+import { afterEach, beforeEach, expect, test } from "vite-plus/test";
 import { backupWebhookConfigSchema, runBackupLifecycle } from "../index.js";
 
 type WebhookHandler = (context: {

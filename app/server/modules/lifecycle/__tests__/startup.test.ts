@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, expect, test, vi } from "vite-plus/test";
 import { Scheduler } from "~/server/core/scheduler";
 import { serverEvents } from "~/server/core/events";
 import { config } from "~/server/core/config";

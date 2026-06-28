@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { tmpdir } from "node:os";
-import { vi } from "vitest";
+import { vi } from "vite-plus/test";
 
 export const createTestDb = async () => {
 	const projectRoot = process.cwd();

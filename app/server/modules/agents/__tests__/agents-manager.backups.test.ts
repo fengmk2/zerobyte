@@ -1,4 +1,4 @@
-import { afterEach, expect, test, vi } from "vitest";
+import { afterEach, expect, test, vi } from "vite-plus/test";
 import waitForExpect from "wait-for-expect";
 import { fromAny, fromPartial } from "@total-typescript/shoehorn";
 import { Effect } from "effect";

@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "vite-plus/test";
 import { assertNotificationTargetAllowed } from "../utils/notification-target-policy";
 
 describe("assertNotificationTargetAllowed", () => {

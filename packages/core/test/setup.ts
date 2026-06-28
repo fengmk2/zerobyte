@@ -1,4 +1,4 @@
-import { vi } from "vitest";
+import { vi } from "vite-plus/test";
 import { Effect } from "effect";
 
 vi.mock(import("../src/node/logger.ts"), () => ({

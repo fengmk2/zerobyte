@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react";
-import { afterEach, describe, expect, test } from "vitest";
+import { afterEach, describe, expect, test } from "vite-plus/test";
 import { HttpResponse, http, server } from "~/test/msw/server";
 import { cleanup, fireEvent, render, screen, userEvent, waitFor, within } from "~/test/test-utils";
 

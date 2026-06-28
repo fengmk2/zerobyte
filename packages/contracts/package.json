@@ -22,7 +22,8 @@
 		"zod": "^4.4.3"
 	},
 	"devDependencies": {
-		"@types/bun": "latest"
+		"@types/bun": "latest",
+		"vite": "npm:@voidzero-dev/vite-plus-core@0.0.0-commit.c0a3a57de28c581e83ba2dc359311d67af46e6c4"
 	},
 	"peerDependencies": {
 		"typescript": "^6.0.3"

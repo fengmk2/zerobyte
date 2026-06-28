@@ -357,7 +357,8 @@ const getMirrorCompatibilityResponse = mirrorCompatibilitySchema.array();
 export type GetMirrorCompatibilityDto = z.infer<typeof getMirrorCompatibilityResponse>;
 
 export const getMirrorCompatibilityDto = describeRoute({
-	description: "Get mirror compatibility info for all repositories relative to a backup schedule's primary repository",
+	description:
+		"Get mirror compatibility info for all repositories relative to a backup schedule's primary repository",
 	operationId: "getMirrorCompatibility",
 	tags: ["Backups"],
 	responses: {

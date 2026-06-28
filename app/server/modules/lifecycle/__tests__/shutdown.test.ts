@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vite-plus/test";
 import { Scheduler } from "../../../core/scheduler";
 import * as bootstrapModule from "../bootstrap";
 import { agentManager } from "../../agents/agents-manager";

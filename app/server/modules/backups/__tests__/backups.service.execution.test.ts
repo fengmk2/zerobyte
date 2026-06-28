@@ -1,5 +1,5 @@
 import waitForExpect from "wait-for-expect";
-import { afterEach, describe, expect, test, vi } from "vitest";
+import { afterEach, describe, expect, test, vi } from "vite-plus/test";
 import { backupsService } from "../backups.service";
 import { createTestVolume } from "~/test/helpers/volume";
 import { createTestBackupSchedule } from "~/test/helpers/backup";

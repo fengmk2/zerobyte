@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, test, vi } from "vitest";
+import { afterEach, describe, expect, test, vi } from "vite-plus/test";
 import { db } from "~/server/db/db";
 import { notificationDestinationsTable } from "~/server/db/schema";
 import { withContext } from "~/server/core/request-context";
@@ -91,7 +91,9 @@ describe("notificationsService.updateDestination", () => {
 		const { organizationId, user } = await createTestSession();
 
 		await withContext({ organizationId, userId: user.id }, async () => {
-			const resolveSecretSpy = vi.spyOn(cryptoUtils, "resolveSecret").mockResolvedValue("discord://token@webhookid");
+			const resolveSecretSpy = vi
+				.spyOn(cryptoUtils, "resolveSecret")
+				.mockResolvedValue("discord://token@webhookid");
 
 			const [destination] = await db
 				.insert(notificationDestinationsTable)

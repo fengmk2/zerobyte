@@ -322,7 +322,8 @@ export const ScheduleMirrorsConfig = ({ scheduleShortId, primaryRepositoryId, re
 							Mirror Repositories
 						</CardTitle>
 						<CardDescription className="hidden @md:block mt-1">
-							Configure secondary repositories where snapshots will be automatically copied after each backup
+							Configure secondary repositories where snapshots will be automatically copied after each
+							backup
 						</CardDescription>
 					</div>
 					{!isAddingNew && selectableRepositories.length > 0 && (
@@ -348,19 +349,34 @@ export const ScheduleMirrorsConfig = ({ scheduleShortId, primaryRepositoryId, re
 										<Tooltip key={repository.shortId}>
 											<TooltipTrigger asChild>
 												<div>
-													<SelectItem value={repository.shortId} disabled={!compat?.compatible}>
+													<SelectItem
+														value={repository.shortId}
+														disabled={!compat?.compatible}
+													>
 														<div className="flex items-center gap-2">
-															<RepositoryIcon backend={repository.type} className="h-4 w-4" />
+															<RepositoryIcon
+																backend={repository.type}
+																className="h-4 w-4"
+															/>
 															<span>{repository.name}</span>
-															<span className="text-xs uppercase text-muted-foreground">({repository.type})</span>
+															<span className="text-xs uppercase text-muted-foreground">
+																({repository.type})
+															</span>
 														</div>
 													</SelectItem>
 												</div>
 											</TooltipTrigger>
-											<TooltipContent side="right" className={cn("max-w-xs", { hidden: compat?.compatible })}>
-												<p>{compat?.reason || "This repository is not compatible for mirroring."}</p>
+											<TooltipContent
+												side="right"
+												className={cn("max-w-xs", { hidden: compat?.compatible })}
+											>
+												<p>
+													{compat?.reason ||
+														"This repository is not compatible for mirroring."}
+												</p>
 												<p className="mt-1 text-xs text-muted-foreground">
-													Consider creating a new backup scheduler with the desired destination instead.
+													Consider creating a new backup scheduler with the desired
+													destination instead.
 												</p>
 											</TooltipContent>
 										</Tooltip>
@@ -371,7 +387,8 @@ export const ScheduleMirrorsConfig = ({ scheduleShortId, primaryRepositoryId, re
 										All available repositories have conflicting backends.
 										<br />
 										<span className="text-xs">
-											Consider creating a new backup scheduler with the desired destination instead.
+											Consider creating a new backup scheduler with the desired destination
+											instead.
 										</span>
 									</div>
 								)}
@@ -387,7 +404,9 @@ export const ScheduleMirrorsConfig = ({ scheduleShortId, primaryRepositoryId, re
 					<div className="flex flex-col items-center justify-center py-8 text-center text-muted-foreground">
 						<Copy className="h-8 w-8 mb-2 opacity-20" />
 						<p className="text-sm">No mirror repositories configured for this schedule.</p>
-						<p className="text-xs mt-1">Click "Add mirror" to replicate backups to additional repositories.</p>
+						<p className="text-xs mt-1">
+							Click "Add mirror" to replicate backups to additional repositories.
+						</p>
 					</div>
 				) : (
 					<div className="rounded-md border">
@@ -438,7 +457,9 @@ export const ScheduleMirrorsConfig = ({ scheduleShortId, primaryRepositoryId, re
 															animated={isSyncing(assignment)}
 														/>
 													</div>
-													<span className="text-sm text-muted-foreground">{getLabel(assignment)}</span>
+													<span className="text-sm text-muted-foreground">
+														{getLabel(assignment)}
+													</span>
 												</div>
 											</TableCell>
 											<TableCell>
@@ -452,7 +473,12 @@ export const ScheduleMirrorsConfig = ({ scheduleShortId, primaryRepositoryId, re
 																disabled={isSyncing(assignment) || hasChanges}
 																className="h-8 w-8 text-muted-foreground hover:text-foreground"
 															>
-																<RefreshCw className={cn("h-4 w-4", isSyncing(assignment) && "animate-spin")} />
+																<RefreshCw
+																	className={cn(
+																		"h-4 w-4",
+																		isSyncing(assignment) && "animate-spin",
+																	)}
+																/>
 															</Button>
 														</TooltipTrigger>
 														<TooltipContent>Sync more snapshots</TooltipContent>
@@ -496,7 +522,9 @@ export const ScheduleMirrorsConfig = ({ scheduleShortId, primaryRepositoryId, re
 						</DialogHeader>
 
 						{isSyncStatusLoading && !syncStatus ? (
-							<div className="py-6 text-center text-muted-foreground text-sm">Loading snapshot status...</div>
+							<div className="py-6 text-center text-muted-foreground text-sm">
+								Loading snapshot status...
+							</div>
 						) : syncStatus && syncStatus.missingSnapshots.length === 0 ? (
 							<div className="py-6 text-center text-muted-foreground text-sm">
 								All {syncStatus.sourceCount} snapshots are already synced to this mirror.
@@ -504,7 +532,8 @@ export const ScheduleMirrorsConfig = ({ scheduleShortId, primaryRepositoryId, re
 						) : syncStatus ? (
 							<div className="space-y-3">
 								<p className="text-sm text-muted-foreground">
-									{syncStatus.missingSnapshots.length} of {syncStatus.sourceCount} snapshots are missing in this mirror.
+									{syncStatus.missingSnapshots.length} of {syncStatus.sourceCount} snapshots are
+									missing in this mirror.
 								</p>
 								<div className="rounded-md border max-h-64 overflow-y-auto">
 									<Table>
@@ -512,7 +541,10 @@ export const ScheduleMirrorsConfig = ({ scheduleShortId, primaryRepositoryId, re
 											<TableRow>
 												<TableHead className="w-10">
 													<Checkbox
-														checked={selectedSnapshotIds.size === syncStatus.missingSnapshots.length}
+														checked={
+															selectedSnapshotIds.size ===
+															syncStatus.missingSnapshots.length
+														}
 														onCheckedChange={toggleAllSnapshots}
 													/>
 												</TableHead>
@@ -531,11 +563,17 @@ export const ScheduleMirrorsConfig = ({ scheduleShortId, primaryRepositoryId, re
 													<TableCell onClick={(e) => e.stopPropagation()}>
 														<Checkbox
 															checked={selectedSnapshotIds.has(snapshot.short_id)}
-															onCheckedChange={() => toggleSnapshotSelection(snapshot.short_id)}
+															onCheckedChange={() =>
+																toggleSnapshotSelection(snapshot.short_id)
+															}
 														/>
 													</TableCell>
-													<TableCell className="font-mono text-xs">{snapshot.short_id}</TableCell>
-													<TableCell className="text-sm">{formatDateTime(new Date(snapshot.time))}</TableCell>
+													<TableCell className="font-mono text-xs">
+														{snapshot.short_id}
+													</TableCell>
+													<TableCell className="text-sm">
+														{formatDateTime(new Date(snapshot.time))}
+													</TableCell>
 													<TableCell className="text-right text-sm">
 														<ByteSize bytes={snapshot.size} base={1024} />
 													</TableCell>

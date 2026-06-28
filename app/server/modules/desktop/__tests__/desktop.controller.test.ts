@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, test } from "vitest";
+import { afterEach, describe, expect, test } from "vite-plus/test";
 import { eq } from "drizzle-orm";
 import { hashPassword } from "better-auth/crypto";
 import { createApp } from "~/server/app";

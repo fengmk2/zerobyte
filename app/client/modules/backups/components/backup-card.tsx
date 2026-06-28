@@ -45,7 +45,10 @@ export const BackupCard = ({ schedule }: { schedule: BackupSchedule }) => {
 						<div className="flex items-center text-sm gap-2">
 							<span className="text-muted-foreground shrink-0">Last backup</span>
 							<div className="flex-1 border-b border-dashed border-border/80 dark:border-border/50" />
-							<TimeAgo date={schedule.lastBackupAt} className="text-foreground font-mono text-sm shrink-0" />
+							<TimeAgo
+								date={schedule.lastBackupAt}
+								className="text-foreground font-mono text-sm shrink-0"
+							/>
 						</div>
 						<div className="flex items-center text-sm gap-2">
 							<span className="text-muted-foreground shrink-0">Next backup</span>
