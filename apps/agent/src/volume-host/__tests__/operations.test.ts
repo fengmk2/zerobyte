@@ -2,7 +2,7 @@ import * as fs from "node:fs/promises";
 import * as os from "node:os";
 import * as path from "node:path";
 import type { Volume as AgentVolume } from "@zerobyte/contracts/volumes";
-import { afterEach, expect, test } from "vitest";
+import { afterEach, expect, test } from "vite-plus/test";
 import { listVolumeFiles } from "../operations";
 
 let tempRoot: string | undefined;

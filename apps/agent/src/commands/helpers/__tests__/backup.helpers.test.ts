@@ -1,6 +1,6 @@
 import path from "node:path";
 import fc from "fast-check";
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "vite-plus/test";
 import type { BackupRunPayload } from "@zerobyte/contracts/agent-protocol";
 import { createBackupOptions, processPattern } from "../backup.helpers";
 

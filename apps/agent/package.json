@@ -5,7 +5,7 @@
 	"module": "src/index.ts",
 	"scripts": {
 		"tsc": "tsc --noEmit",
-		"test": "bunx --bun vitest run --config ./vitest.config.ts"
+		"test": "bunx --bun vp test run --config ./vitest.config.ts"
 	},
 	"dependencies": {
 		"@zerobyte/contracts": "workspace:*",
@@ -13,7 +13,8 @@
 		"effect": "^3.21.3"
 	},
 	"devDependencies": {
-		"@types/bun": "latest"
+		"@types/bun": "latest",
+		"vite": "npm:@voidzero-dev/vite-plus-core@0.0.0-commit.c0a3a57de28c581e83ba2dc359311d67af46e6c4"
 	},
 	"peerDependencies": {
 		"typescript": "^6.0.3"

@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, test, vi } from "vitest";
+import { afterEach, describe, expect, test, vi } from "vite-plus/test";
 import { HttpResponse, http, server } from "~/test/msw/server";
 import { cleanup, render, screen, userEvent, waitFor } from "~/test/test-utils";
 import {

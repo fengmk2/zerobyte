@@ -1,4 +1,4 @@
-import { vi } from "vitest";
+import { vi } from "vite-plus/test";
 import { Effect } from "effect";
 
 process.env.BASE_URL = "http://localhost:3000";

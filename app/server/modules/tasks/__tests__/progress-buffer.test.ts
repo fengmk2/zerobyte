@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, expect, test, vi } from "vite-plus/test";
 import { db } from "~/server/db/db";
 import { tasksTable } from "~/server/db/schema";
 import { ensureTestOrganization, TEST_ORG_ID } from "~/test/helpers/organization";

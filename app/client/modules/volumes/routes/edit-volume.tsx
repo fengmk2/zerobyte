@@ -102,7 +102,11 @@ export function EditVolumePage({ volumeId }: { volumeId: string }) {
 							loading={updateVolume.isPending}
 						/>
 						<div className="flex justify-end gap-2 pt-4 border-t">
-							<Button type="button" variant="secondary" onClick={() => navigate({ to: `/volumes/${volume.shortId}` })}>
+							<Button
+								type="button"
+								variant="secondary"
+								onClick={() => navigate({ to: `/volumes/${volume.shortId}` })}
+							>
 								Cancel
 							</Button>
 							<Button type="submit" form={formId} loading={updateVolume.isPending}>
@@ -118,8 +122,8 @@ export function EditVolumePage({ volumeId }: { volumeId: string }) {
 					<AlertDialogHeader>
 						<AlertDialogTitle>Update Volume Configuration</AlertDialogTitle>
 						<AlertDialogDescription>
-							Editing the volume will remount it with the new config immediately. This may temporarily disrupt access to
-							the volume. Continue?
+							Editing the volume will remount it with the new config immediately. This may temporarily
+							disrupt access to the volume. Continue?
 						</AlertDialogDescription>
 					</AlertDialogHeader>
 					<AlertDialogFooter>

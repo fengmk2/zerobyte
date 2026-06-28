@@ -1,5 +1,5 @@
 import { Effect, Exit, Fiber, Scope } from "effect";
-import { expect, test, vi } from "vitest";
+import { expect, test, vi } from "vite-plus/test";
 import waitForExpect from "wait-for-expect";
 import { fromPartial } from "@total-typescript/shoehorn";
 import {

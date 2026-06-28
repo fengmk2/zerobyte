@@ -39,7 +39,10 @@ export const DoctorReport = ({ result, repositoryStatus }: Props) => {
 			{result && (
 				<div className="space-y-2">
 					{result.steps.map((step) => (
-						<Collapsible key={step.step} className="border border-border/50 rounded-lg overflow-hidden group">
+						<Collapsible
+							key={step.step}
+							className="border border-border/50 rounded-lg overflow-hidden group"
+						>
 							<CollapsibleTrigger className="w-full flex items-center justify-between p-3 hover:bg-muted/50 transition-colors">
 								<span className="text-sm font-medium capitalize">{step.step.replaceAll("_", " ")}</span>
 								{step.success ? (
@@ -52,12 +55,16 @@ export const DoctorReport = ({ result, repositoryStatus }: Props) => {
 								<div className="p-3 space-y-3">
 									{step.output && (
 										<pre className="text-xs font-mono bg-background p-3 rounded-md border border-border/50 overflow-auto max-h-50 whitespace-pre-wrap">
-											{safeJsonParse(step.output) ? JSON.stringify(safeJsonParse(step.output), null, 2) : step.output}
+											{safeJsonParse(step.output)
+												? JSON.stringify(safeJsonParse(step.output), null, 2)
+												: step.output}
 										</pre>
 									)}
 									{step.error && (
 										<div className="space-y-2">
-											<div className="text-[10px] uppercase font-bold text-red-500/70 tracking-wider">Error</div>
+											<div className="text-[10px] uppercase font-bold text-red-500/70 tracking-wider">
+												Error
+											</div>
 											<pre className="text-xs font-mono bg-red-500/10 text-red-500 p-3 rounded-md border border-red-500/20 overflow-auto whitespace-pre-wrap">
 												{step.error}
 											</pre>

@@ -1,4 +1,4 @@
-import { describe, expect, test, vi } from "vitest";
+import { describe, expect, test, vi } from "vite-plus/test";
 
 describe("cryptoUtils", () => {
 	test("sealSecret rejects encrypted values that cannot be decrypted with the current app secret", async () => {

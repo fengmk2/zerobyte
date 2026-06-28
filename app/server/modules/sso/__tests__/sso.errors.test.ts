@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "vite-plus/test";
 import { ACCOUNT_LINK_REQUIRED_DESCRIPTION } from "~/lib/sso-errors";
 import { mapAuthErrorToCode } from "../sso.errors";
 

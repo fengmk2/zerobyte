@@ -5,7 +5,7 @@ import nodePath from "node:path";
 import { randomUUID } from "node:crypto";
 import { Readable } from "node:stream";
 import { Effect } from "effect";
-import { afterEach, beforeAll, beforeEach, describe, expect, test, vi } from "vitest";
+import { afterEach, beforeAll, beforeEach, describe, expect, test, vi } from "vite-plus/test";
 import type { RepositoryConfig } from "@zerobyte/core/restic";
 import { REPOSITORY_BASE } from "~/server/core/constants";
 import { config } from "~/server/core/config";

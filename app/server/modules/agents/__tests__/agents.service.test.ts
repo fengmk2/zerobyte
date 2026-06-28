@@ -1,4 +1,4 @@
-import { beforeEach, expect, test } from "vitest";
+import { beforeEach, expect, test } from "vite-plus/test";
 import { db } from "~/server/db/db";
 import { agentsTable } from "~/server/db/schema";
 import { LOCAL_AGENT_ID, LOCAL_AGENT_KIND, LOCAL_AGENT_NAME } from "../constants";

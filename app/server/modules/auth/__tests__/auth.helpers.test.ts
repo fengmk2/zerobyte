@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, test } from "vitest";
+import { beforeEach, describe, expect, test } from "vite-plus/test";
 import { config } from "~/server/core/config";
 import { isPasswordAuthSupported, isSessionAuthSourceAllowed } from "../helpers";
 

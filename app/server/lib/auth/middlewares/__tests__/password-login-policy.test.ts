@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, test, vi } from "vitest";
+import { beforeEach, describe, expect, test, vi } from "vite-plus/test";
 import { config } from "~/server/core/config";
 import type { AuthMiddlewareContext } from "~/server/lib/auth";
 import { systemService } from "~/server/modules/system/system.service";

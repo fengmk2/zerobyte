@@ -1,4 +1,4 @@
-import { afterEach, beforeAll, beforeEach, describe, expect, test, vi } from "vitest";
+import { afterEach, beforeAll, beforeEach, describe, expect, test, vi } from "vite-plus/test";
 import crypto from "node:crypto";
 import { PassThrough } from "node:stream";
 import { createApp } from "~/server/app";

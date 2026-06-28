@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "vite-plus/test";
 import type { AuthMiddlewareContext } from "~/server/lib/auth";
 import { validateSsoCallbackUrls } from "../validate-callback-urls";
 

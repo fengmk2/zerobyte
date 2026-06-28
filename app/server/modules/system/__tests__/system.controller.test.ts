@@ -1,4 +1,4 @@
-import { afterEach, beforeAll, describe, expect, test, vi } from "vitest";
+import { afterEach, beforeAll, describe, expect, test, vi } from "vite-plus/test";
 import { createApp } from "~/server/app";
 import { createTestSession, createTestSessionWithGlobalAdmin, getAuthHeaders } from "~/test/helpers/auth";
 import { systemService } from "../system.service";

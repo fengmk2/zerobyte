@@ -34,7 +34,9 @@ export function DataTableSortHeader<TData, TValue>({
 			>
 				<span className="relative flex w-full items-center justify-center">
 					{title}
-					<span className={cn("lg:absolute lg:-right-6 lg:top-1/2 lg:-translate-y-1/2", iconVisibility)}>{icon}</span>
+					<span className={cn("lg:absolute lg:-right-6 lg:top-1/2 lg:-translate-y-1/2", iconVisibility)}>
+						{icon}
+					</span>
 				</span>
 			</Button>
 		);

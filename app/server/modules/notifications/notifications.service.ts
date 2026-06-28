@@ -126,7 +126,10 @@ const updateDestination = async (
 		.update(notificationDestinationsTable)
 		.set(updateData)
 		.where(
-			and(eq(notificationDestinationsTable.id, id), eq(notificationDestinationsTable.organizationId, organizationId)),
+			and(
+				eq(notificationDestinationsTable.id, id),
+				eq(notificationDestinationsTable.organizationId, organizationId),
+			),
 		)
 		.returning();
 
@@ -143,7 +146,10 @@ const deleteDestination = async (id: number) => {
 	await db
 		.delete(notificationDestinationsTable)
 		.where(
-			and(eq(notificationDestinationsTable.id, id), eq(notificationDestinationsTable.organizationId, organizationId)),
+			and(
+				eq(notificationDestinationsTable.id, id),
+				eq(notificationDestinationsTable.organizationId, organizationId),
+			),
 		);
 };
 
@@ -252,7 +258,9 @@ const updateScheduleNotifications = async (
 		}
 	}
 
-	await db.delete(backupScheduleNotificationsTable).where(eq(backupScheduleNotificationsTable.scheduleId, scheduleId));
+	await db
+		.delete(backupScheduleNotificationsTable)
+		.where(eq(backupScheduleNotificationsTable.scheduleId, scheduleId));
 
 	if (assignments.length > 0) {
 		await db.insert(backupScheduleNotificationsTable).values(

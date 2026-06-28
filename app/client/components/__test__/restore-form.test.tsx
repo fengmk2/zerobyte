@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, test, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, test, vi } from "vite-plus/test";
 import { HttpResponse, http, server } from "~/test/msw/server";
 import { cleanup, render, screen, userEvent, waitFor, within } from "~/test/test-utils";
 import { fromAny } from "@total-typescript/shoehorn";

@@ -45,7 +45,9 @@ type VolumeRow = {
 const volumeColumns: ColumnDef<VolumeRow>[] = [
 	{
 		accessorKey: "name",
-		header: ({ column }) => <DataTableSortHeader column={column} title="Name" sortDirection={column.getIsSorted()} />,
+		header: ({ column }) => (
+			<DataTableSortHeader column={column} title="Name" sortDirection={column.getIsSorted()} />
+		),
 		cell: ({ row }) => (
 			<div className="flex items-center gap-2">
 				<span>{row.original.name}</span>
@@ -65,7 +67,9 @@ const volumeColumns: ColumnDef<VolumeRow>[] = [
 		header: ({ column }) => (
 			<DataTableSortHeader column={column} title="Status" sortDirection={column.getIsSorted()} center />
 		),
-		cell: ({ row }) => <StatusDot variant={getVolumeStatusVariant(row.original.status)} label={row.original.status} />,
+		cell: ({ row }) => (
+			<StatusDot variant={getVolumeStatusVariant(row.original.status)} label={row.original.status} />
+		),
 		filterFn: (row, id, value) => row.getValue(id) === value,
 	},
 ];
@@ -175,7 +179,9 @@ export function VolumesPage() {
 											"text-center": header.column.id === "status",
 										})}
 									>
-										{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+										{header.isPlaceholder
+											? null
+											: flexRender(header.column.columnDef.header, header.getContext())}
 									</TableHead>
 								))}
 							</TableRow>

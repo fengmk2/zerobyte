@@ -1,5 +1,5 @@
 import { spawn } from "node:child_process";
-import { afterEach, describe, expect, test, vi } from "vitest";
+import { afterEach, describe, expect, test, vi } from "vite-plus/test";
 import * as cleanupModule from "../../helpers/cleanup-temporary-keys";
 import * as nodeModule from "../../../node";
 import { dump } from "../dump";

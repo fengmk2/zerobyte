@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, test, vi } from "vitest";
+import { beforeEach, describe, expect, test, vi } from "vite-plus/test";
 import { eq } from "drizzle-orm";
 import { db } from "~/server/db/db";
 import { account, passkey, usersTable } from "~/server/db/schema";

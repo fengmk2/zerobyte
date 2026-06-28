@@ -1,4 +1,4 @@
-import { vi } from "vitest";
+import { vi } from "vite-plus/test";
 import { fromAny, fromPartial } from "@total-typescript/shoehorn";
 import type { SafeSpawnParams } from "@zerobyte/core/node";
 import type { BackupExecutionProgress, BackupExecutionResult } from "~/server/modules/agents/agents-manager";

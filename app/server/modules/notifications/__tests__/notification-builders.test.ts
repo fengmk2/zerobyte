@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "vite-plus/test";
 import { buildCustomShoutrrrUrl } from "../builders/custom";
 import { buildDiscordShoutrrrUrl } from "../builders/discord";
 import { buildEmailShoutrrrUrl } from "../builders/email";

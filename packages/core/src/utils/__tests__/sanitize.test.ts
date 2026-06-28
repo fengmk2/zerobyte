@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test } from "vite-plus/test";
 import { sanitizeSensitiveData } from "../sanitize";
 
 const withNodeEnv = (nodeEnv: string, fn: () => void) => {

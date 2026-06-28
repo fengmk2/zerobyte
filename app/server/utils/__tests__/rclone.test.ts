@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, test, vi } from "vitest";
+import { afterEach, describe, expect, test, vi } from "vite-plus/test";
 
 vi.mock("@zerobyte/core/node", async (importOriginal) => {
 	const actual = await importOriginal<typeof import("@zerobyte/core/node")>();

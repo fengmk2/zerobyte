@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { expect } from "vitest";
+import { expect } from "vite-plus/test";
 import type { ScenarioFixture } from "./fixture";
 
 type ResticLsNode = {

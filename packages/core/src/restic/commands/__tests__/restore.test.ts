@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, test, vi } from "vitest";
+import { afterEach, describe, expect, test, vi } from "vite-plus/test";
 import { Effect } from "effect";
 import * as cleanupModule from "../../helpers/cleanup-temporary-keys";
 import * as spawnModule from "../../../node/spawn";

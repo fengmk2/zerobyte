@@ -3,7 +3,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { Effect } from "effect";
 import type { RepositoryConfig } from "@zerobyte/core/restic";
-import { expect, test } from "vitest";
+import { expect, test } from "vite-plus/test";
 import {
 	INTEGRATION_ORGANIZATION_ID,
 	INTEGRATION_RUNS_DIR,

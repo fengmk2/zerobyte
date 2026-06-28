@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, test, vi } from "vitest";
+import { afterEach, describe, expect, test, vi } from "vite-plus/test";
 import { DEFAULT_TIME_FORMAT, inferDateTimePreferences, rawFormatters } from "../datetime";
 
 afterEach(() => {

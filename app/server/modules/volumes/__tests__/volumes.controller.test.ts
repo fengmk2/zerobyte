@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, describe, expect, test } from "vitest";
+import { afterAll, beforeAll, describe, expect, test } from "vite-plus/test";
 import { db } from "~/server/db/db";
 import { volumesTable } from "~/server/db/schema";
 import { createApp } from "~/server/app";
